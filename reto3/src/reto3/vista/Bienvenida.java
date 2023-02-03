@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Bienvenida {
 
@@ -44,18 +46,24 @@ public class Bienvenida {
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
-		
+
 		JPanel panelBienvenida = new JPanel();
 		panelBienvenida.setBounds(0, 0, 1207, 661);
 		frame.getContentPane().add(panelBienvenida);
 		panelBienvenida.setLayout(null);
-		
+
 		JButton jButtonBienvenida = new JButton("");
 		jButtonBienvenida.setIcon(new ImageIcon(Bienvenida.class.getResource("/reto3/vista/imagenes/Bienvenida.png")));
 		jButtonBienvenida.setBounds(0, 0, 1207, 661);
 		panelBienvenida.add(jButtonBienvenida);
-		
+		jButtonBienvenida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelBienvenida.setVisible(false); // DESATIVAR VISUALIZACIÓN DE PANEL ANTERIOR
+				frame.dispose(); // ESCONDER EL JFRAME ANTERIOR
+				SeleccionCines open = new SeleccionCines();
+				open.setVisible(true); // HACER VISIBLE EL JFRAME DESEADO
+			}
+		});
 
-		
 	}
 }
