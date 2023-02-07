@@ -15,9 +15,10 @@ public class TipoDePago implements Serializable {
 	 */
 
 	private String numTarjeta = null;
-	private Date caducidad = null; // formato mes/año
+	private Date caducidad = null; 
 	private String cvv = null;
 	private Cliente cliente = null;
+	private Factura factura = null;
 	public String getNumTarjeta() {
 		return numTarjeta;
 	}
@@ -42,9 +43,15 @@ public class TipoDePago implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	public Factura getFactura() {
+		return factura;
+	}
+	public void setFactura(Factura factura) {
+		this.factura = factura;
+	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(caducidad, cliente, cvv, numTarjeta);
+		return Objects.hash(caducidad, cliente, cvv, factura, numTarjeta);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -56,12 +63,14 @@ public class TipoDePago implements Serializable {
 			return false;
 		TipoDePago other = (TipoDePago) obj;
 		return Objects.equals(caducidad, other.caducidad) && Objects.equals(cliente, other.cliente)
-				&& Objects.equals(cvv, other.cvv) && Objects.equals(numTarjeta, other.numTarjeta);
+				&& Objects.equals(cvv, other.cvv) && Objects.equals(factura, other.factura)
+				&& Objects.equals(numTarjeta, other.numTarjeta);
 	}
 	@Override
 	public String toString() {
 		return "TipoDePago [numTarjeta=" + numTarjeta + ", caducidad=" + caducidad + ", cvv=" + cvv + ", cliente="
-				+ cliente + "]";
+				+ cliente + ", factura=" + factura + "]";
 	}
+	
 
 }

@@ -2,6 +2,7 @@ package reto3.bbdd.pojo;
 
 import java.io.File;
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -96,6 +97,9 @@ public class Pelicula implements Serializable {
 				+ ", duracion=" + duracion + ", descripcion=" + descripcion + ", calificacion=" + calificacion
 				+ ", genero=" + genero + ", image=" + image + "]";
 	}
+	
+	
+	
 
 
 	
