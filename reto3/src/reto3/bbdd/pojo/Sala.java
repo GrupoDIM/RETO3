@@ -18,9 +18,13 @@ public class Sala  implements Serializable {
 	private int id;
 	private String nombre = null;
 	private boolean disponible = true;
-
+	
+	//relacion N:1 con Cine
 	private Cine cine = null;
+	
+	//relacion 1:N con Asiento
 	private List<Asiento> asientos = new ArrayList<Asiento>();
+	
 	public int getId() {
 		return id;
 	}

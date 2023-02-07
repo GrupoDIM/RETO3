@@ -3,7 +3,7 @@ package reto3.bbdd.pojo;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Asiento  implements Serializable  {
+public class Asiento implements Serializable {
 	/**
 	 * 
 	 */
@@ -13,30 +13,57 @@ public class Asiento  implements Serializable  {
 	 */
 
 	private int id;
+	private int fila = 0;
+	private int numero = 0;
 	private boolean disponible = true;
+	
 	private Sala sala = null;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public boolean isDisponible() {
 		return disponible;
 	}
+
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
+
 	public Sala getSala() {
 		return sala;
 	}
+
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
+
+	public int getFila() {
+		return fila;
+	}
+
+	public void setFila(int fila) {
+		this.fila = fila;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(disponible, id, sala);
+		return Objects.hash(disponible, fila, id, numero, sala);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -46,11 +73,14 @@ public class Asiento  implements Serializable  {
 		if (getClass() != obj.getClass())
 			return false;
 		Asiento other = (Asiento) obj;
-		return disponible == other.disponible && id == other.id && Objects.equals(sala, other.sala);
+		return disponible == other.disponible && fila == other.fila && id == other.id && numero == other.numero
+				&& Objects.equals(sala, other.sala);
 	}
+
 	@Override
 	public String toString() {
-		return "Asiento [id=" + id + ", disponible=" + disponible + ", sala=" + sala + "]";
+		return "Asiento [id=" + id + ", fila=" + fila + ", numero=" + numero + ", disponible=" + disponible + ", sala="
+				+ sala + "]";
 	}
 
 
