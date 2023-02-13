@@ -58,10 +58,10 @@ public class Bienvenida {
 		panelBienvenida.add(jButtonBienvenida);
 		jButtonBienvenida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelBienvenida.setVisible(false); // DESATIVAR VISUALIZACIÓN DE PANEL ANTERIOR
-				frame.dispose(); // ESCONDER EL JFRAME ANTERIOR
-				SeleccionCines open = new SeleccionCines();
-				open.setVisible(true); // HACER VISIBLE EL JFRAME DESEADO
+				panelBienvenida.setVisible(false); 
+				frame.dispose(); 
+				SeleccionCines open = new SeleccionCines(null );
+				open.setVisible(true);
 			}
 		});
 

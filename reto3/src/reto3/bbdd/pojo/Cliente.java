@@ -11,7 +11,12 @@ public class Cliente implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4351637911824554935L;
+	
+	
+	//Primary key
 	private int id;
+	
+	//Atributos
 	private String dni = null;
 	private String nombre = null;
 	private String apellido1 = null;
@@ -20,7 +25,11 @@ public class Cliente implements Serializable {
 	private String tele = null;
 	private String password = null;
 	private char genero;
+	
+	//Foreign key	//La relacion entre Cliente y Factura es de 0:N
 	private List<Factura> tickets = new ArrayList<Factura>();
+	
+	
 	public int getId() {
 		return id;
 	}
