@@ -1,55 +1,32 @@
 package reto3.vista;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import reto3.bbdd.pojo.Factura;
+import reto3.bbdd.gestores.GestorProyeccion;
 import reto3.bbdd.pojo.Proyeccion;
-import reto3.controlador.Connection;
 import reto3.controlador.Gestor;
-
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
+import reto3.controlador.Cart.Carrito;
 
 public class PantallaFechaYSesion extends JFrame {
 
+	private static final long serialVersionUID = -5841819558911849299L;
 	private JPanel contentPane;
 	private JPanel panel;
 	private JLabel lblTitulo;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		Proyeccion sesion = null;
-		ArrayList<Factura> compras = null;
-		ArrayList<Date> fechas = null;
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PantallaFechaYSesion frame = new PantallaFechaYSesion(fechas, sesion, compras);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public PantallaFechaYSesion(ArrayList<Date> fechas, Proyeccion sesion, ArrayList<Factura> compras) {
+	public PantallaFechaYSesion(ArrayList<Date> fechas, Proyeccion sesion, Carrito cart) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 923, 628);
 		contentPane = new JPanel();
@@ -69,9 +46,10 @@ public class PantallaFechaYSesion extends JFrame {
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Connection con = new Connection();
-				Peliculas open = new Peliculas(con.getProyeccionByIdCine(sesion.getSala().getCine().getId()), compras);
-				open.setVisible(true);
+				GestorProyeccion gestorProyeccion = new GestorProyeccion();
+				Peliculas peliculas = new Peliculas(
+						gestorProyeccion.getProyeccionByIdCine(sesion.getSala().getCine().getId()), cart);
+				peliculas.setVisible(true);
 			}
 		});
 		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -91,7 +69,7 @@ public class PantallaFechaYSesion extends JFrame {
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 		lblTitulo.setBounds(340, 97, 516, 33);
 		contentPane.add(lblTitulo);
-		new Gestor().addJbuttonToPanelVentanaFechaYSesion(contentPane, this, fechas, sesion, compras);
+		new Gestor().addJbuttonToPanelVentanaFechaYSesion(contentPane, this, fechas, sesion, cart);
 	}
 
 }

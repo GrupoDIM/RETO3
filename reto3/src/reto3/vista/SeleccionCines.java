@@ -1,32 +1,24 @@
 package reto3.vista;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import reto3.bbdd.pojo.Cine;
-import reto3.bbdd.pojo.Factura;
-import reto3.bbdd.pojo.Proyeccion;
-import reto3.controlador.Connection;
-import reto3.controlador.Gestor;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
+import javax.swing.border.EmptyBorder;
+
+import reto3.bbdd.gestores.GestorProyeccion;
+import reto3.controlador.Cart.Carrito;
 
 public class SeleccionCines extends JFrame {
+
+	private static final long serialVersionUID = -1525562907814196106L;
 
 	private JPanel contentPane;
 	private JTextField txtSele;
@@ -35,27 +27,7 @@ public class SeleccionCines extends JFrame {
 	private JButton btnCineBarakaldo;
 	private JButton btnCarritoDeCompra;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		ArrayList<Factura> compras = null;
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SeleccionCines frame = new SeleccionCines(compras);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public SeleccionCines(ArrayList<Factura> compras) {
+	public SeleccionCines(Carrito cart) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1223, 700);
 		contentPane = new JPanel();
@@ -75,9 +47,11 @@ public class SeleccionCines extends JFrame {
 		JButton btnInicio = new JButton("FINALIZAR");
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (compras == null || compras.size() == 0) {
-					System.exit(0);
-				} 
+				if (cart.isEmpty()) {
+					Bienvenida bienvenida = new Bienvenida();
+					dispose();
+					bienvenida.frame.setVisible(true);
+				}
 			}
 		});
 		btnInicio.setForeground(new Color(255, 255, 255));
@@ -85,6 +59,7 @@ public class SeleccionCines extends JFrame {
 		btnInicio.setBackground(new Color(0, 0, 0));
 		btnInicio.setBounds(10, 11, 132, 50);
 		panel.add(btnInicio);
+
 		btnCarritoDeCompra = new JButton("");
 		btnCarritoDeCompra.setForeground(new Color(255, 255, 255));
 		btnCarritoDeCompra.setBackground(new Color(255, 255, 255));
@@ -93,12 +68,14 @@ public class SeleccionCines extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String msg = null;
 				dispose();
-				if (compras == null || compras.size() == 0) {
-					msg = "Usted Ha realizado 0 compras!!";
-					ShoppingCart open = new ShoppingCart(null, compras, msg, 1);
+				if (cart.isEmpty()) {
+					msg = "0 compras!!";
+					ShoppingCart open = new ShoppingCart(null, cart, msg, 1);
+					dispose();
 					open.setVisible(true);
 				} else {
-					ShoppingCart shopCart = new ShoppingCart(null, compras, null, 1);
+					ShoppingCart shopCart = new ShoppingCart(null, cart, null, 1);
+					dispose();
 					shopCart.setVisible(true);
 				}
 
@@ -128,7 +105,7 @@ public class SeleccionCines extends JFrame {
 		btnCineBarakaldo.setBackground(Color.WHITE);
 		btnCineBarakaldo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, compras);
+				cambiarPanel(e, cart);
 			}
 		});
 		btnCineBarakaldo.setBounds(476, 259, 272, 188);
@@ -139,7 +116,7 @@ public class SeleccionCines extends JFrame {
 		btnCineYelmoArtea.setBackground(Color.WHITE);
 		btnCineYelmoArtea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, compras);
+				cambiarPanel(e, cart);
 			}
 		});
 		btnCineYelmoArtea.setBounds(842, 259, 269, 188);
@@ -150,33 +127,36 @@ public class SeleccionCines extends JFrame {
 		btnCineBallonti.setBackground(Color.WHITE);
 		btnCineBallonti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, compras);
+				cambiarPanel(e, cart);
 			}
 		});
 		btnCineBallonti.setBounds(156, 259, 269, 188);
 		panelUno.add(btnCineBallonti);
 	}
 
-	private void cambiarPanel(ActionEvent e, ArrayList<Factura> compras) {
-		int id = 0;
-		Connection con = new Connection();
+	private void cambiarPanel(ActionEvent e, Carrito cart) {
+		int id;
+		GestorProyeccion gestor = new GestorProyeccion();
 		if (e.getSource() == btnCineBarakaldo) {
 			id = 3;
+
+			Peliculas open = new Peliculas(gestor.getProyeccionByIdCine(id), cart);
 			dispose();
-			Peliculas open = new Peliculas(con.getProyeccionByIdCine(3), compras);
 			open.setVisible(true);
 		}
 		if (e.getSource() == btnCineYelmoArtea) {
 			id = 2;
+
+			Peliculas open = new Peliculas(gestor.getProyeccionByIdCine(id), cart);
 			dispose();
-			Peliculas open = new Peliculas(con.getProyeccionByIdCine(2), compras);
 			open.setVisible(true);
 
 		}
 		if (e.getSource() == btnCineBallonti) {
 			id = 4;
+
+			Peliculas open = new Peliculas(gestor.getProyeccionByIdCine(id), cart);
 			dispose();
-			Peliculas open = new Peliculas(con.getProyeccionByIdCine(4), compras);
 			open.setVisible(true);
 		}
 	}

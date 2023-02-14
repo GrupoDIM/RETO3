@@ -1,9 +1,10 @@
 package reto3.vista;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import reto3.controlador.Cart.Carrito;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -11,23 +12,7 @@ import java.awt.event.ActionEvent;
 
 public class Bienvenida {
 
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Bienvenida window = new Bienvenida();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public JFrame frame;
 
 	/**
 	 * Create the application.
@@ -60,8 +45,9 @@ public class Bienvenida {
 			public void actionPerformed(ActionEvent e) {
 				panelBienvenida.setVisible(false); 
 				frame.dispose(); 
-				SeleccionCines open = new SeleccionCines(null );
-				open.setVisible(true);
+				
+				SeleccionCines seleccionCines = new SeleccionCines(new Carrito());
+				seleccionCines.setVisible(true);
 			}
 		});
 

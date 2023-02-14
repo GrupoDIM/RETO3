@@ -1,55 +1,31 @@
 package reto3.vista;
 
-import java.awt.Button;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import reto3.bbdd.pojo.Factura;
+import reto3.bbdd.gestores.GestorPelicula;
 import reto3.bbdd.pojo.Genero;
 import reto3.bbdd.pojo.Proyeccion;
-import reto3.controlador.Connection;
 import reto3.controlador.Gestor;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Color;
-import javax.swing.ImageIcon;
+import reto3.controlador.Cart.Carrito;
 
 public class ElegirHora extends JFrame {
 
+	private static final long serialVersionUID = 4822076674316770008L;
 	private JPanel contentPane;
 	private JPanel panel;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		ArrayList<Proyeccion> sesiones = null;
-		ArrayList<Factura> compras = null;
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ElegirHora frame = new ElegirHora(sesiones, compras);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public ElegirHora(ArrayList<Proyeccion> sesiones, ArrayList<Factura> compras) {
+	public ElegirHora(ArrayList<Proyeccion> sesiones, Carrito cart) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 830, 556);
 		contentPane = new JPanel();
@@ -80,7 +56,7 @@ public class ElegirHora extends JFrame {
 
 		JLabel lblGenero = new JLabel("genero");
 		lblGenero.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblGenero.setText(new Gestor().generoToString(new ArrayList(sesiones.get(0).getPelicula().getGenero())));
+		lblGenero.setText(new Gestor().generoToString(new ArrayList<Genero>(sesiones.get(0).getPelicula().getGenero())));
 		lblGenero.setBounds(300, 111, 438, 32);
 		panel.add(lblGenero);
 
@@ -115,17 +91,17 @@ public class ElegirHora extends JFrame {
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Connection con = new Connection();
-				PantallaFechaYSesion open = new PantallaFechaYSesion(
-						con.getFechasDeUnaPelicula(sesiones.get(0).getPelicula().getId(),
+				GestorPelicula gestorPelicula = new GestorPelicula();
+				PantallaFechaYSesion fechaYSesion = new PantallaFechaYSesion(
+						gestorPelicula.getFechasDeUnaPelicula(sesiones.get(0).getPelicula().getId(),
 								sesiones.get(0).getSala().getCine().getId()),
-						sesiones.get(0), compras);
-				open.setVisible(true);
+						sesiones.get(0), cart);
+				fechaYSesion.setVisible(true);
 			}
 		});
 		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 15));
 		Gestor gestor = new Gestor();
-		gestor.addnewButtonToVentanaElegirHora(panel, this, sesiones, compras);
+		gestor.addnewButtonToVentanaElegirHora(panel, this, sesiones, cart);
 	}
 
 }

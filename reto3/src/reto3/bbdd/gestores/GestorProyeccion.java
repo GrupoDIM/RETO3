@@ -1,113 +1,37 @@
-package reto3.controlador;
+package reto3.bbdd.gestores;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Blob;
-import java.sql.DriverManager;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
-import javax.imageio.ImageIO;
-
-import reto3.bbdd.pojo.Asiento;
 import reto3.bbdd.pojo.Cine;
 import reto3.bbdd.pojo.Genero;
 import reto3.bbdd.pojo.Pelicula;
 import reto3.bbdd.pojo.Proyeccion;
+import reto3.bbdd.pojo.Sala;
 import reto3.bbdd.pojo.Proyeccion.orderSessionesByDateTime;
 
-import reto3.bbdd.pojo.Sala;
+import reto3.controlador.Gestor;
 
-public class Connection {
-	private String hostname;
-	private String port;
-	private String username;
-	private String password;
-	private String database;
+public class GestorProyeccion {
+	private Connection con = null;
 
-	private java.sql.Connection connection;
-
-	public Connection() {
-		this.hostname = "localhost";
-		this.port = "3306";
-		this.username = "root";
-		this.password = "";
-		this.database = "reto";
-	}
-
-	public void connect() {
-		String url = "jdbc:mysql://" + this.hostname + ":" + this.port + "/" + this.database;
-		try {
-			this.connection = DriverManager.getConnection(url, this.username, this.password);
-		} catch (SQLException ex) {
-			this.connection = null;
-		}
-	}
-
-	public void disconnect() {
-		try {
-			this.connection.close();
-		} catch (SQLException e) {
-			this.connection = null;
-		}
-		this.connection = null;
-	}
-
-	public ArrayList<Date> getFechasDeUnaPelicula(int id, int idCine) {
-		if (!this.isConnected())
-			this.connect();
-		ArrayList<Date> ret = new ArrayList<>();
-		Statement sm = null;
-		ResultSet rs = null;
-
-		try {
-			sm = this.connection.createStatement();
-
-			String query = "SELECT sp.fecha , sp.sala_id FROM `sala_pelicula` AS sp JOIN sala AS s ON sp.sala_id = s.sala_id WHERE sp.peli_id ='"
-					+ id + "'AND s.cine_id = '" + idCine + "' AND fecha>= CURRENT_DATE() GROUP BY fecha";
-
-			rs = sm.executeQuery(query);
-			while (rs.next()) {
-
-				java.sql.Date date = rs.getDate("fecha");
-				ret.add(new Date(date.getTime()));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-			if (sm != null) {
-				try {
-					sm.close();
-				} catch (SQLException e) {
-				}
-
-				this.disconnect();
-			}
-		}
-		return ret;
+	public GestorProyeccion() {
+		con = new Connection();
 	}
 
 	public ArrayList<Proyeccion> getProyeccionByIdCine(int id) {
-		if (!this.isConnected())
-			this.connect();
+
+		if (!con.isConnected())
+			con.connect();
 		ArrayList<Proyeccion> ret = new ArrayList<Proyeccion>();
 		Statement sm = null;
 		ResultSet rs = null;
@@ -116,7 +40,7 @@ public class Connection {
 		int idPeli = 0;
 
 		try {
-			sm = this.connection.createStatement();
+			sm = con.connection.createStatement();
 
 			String query = "SELECT DISTINCT `id_sala_pelicula`, sp.sala_id ,`peli_id` , `precio` , `fecha` , `hora` FROM sala_pelicula AS sp JOIN sala AS s ON sp.sala_id = s.sala_id AND s.cine_id = '"
 					+ id + "' WHERE `fecha` >= CURRENT_DATE() GROUP BY `peli_id`";
@@ -157,7 +81,7 @@ public class Connection {
 				} catch (SQLException e) {
 				}
 
-				this.disconnect();
+				con.disconnect();
 			}
 		}
 		Collections.sort(ret, new orderSessionesByDateTime());
@@ -166,42 +90,28 @@ public class Connection {
 	}
 
 	public Sala getSalaByID(int id) throws SQLException {
+
+		if (!con.isConnected())
+			con.connect();
 		Sala ret = null;
-		Statement sm = this.connection.createStatement();
+		Statement sm = con.connection.createStatement();
 		String query = "SELECT * FROM `sala` WHERE `sala_id` = '" + id + "'";
 		ResultSet rs = sm.executeQuery(query);
 		if (rs.next()) {
 			Sala sala = new Sala();
 			sala.setId(rs.getInt("sala_id"));
 			sala.setNombre(rs.getString("numero"));
-			ArrayList<Asiento> asientos = getAsientosByIdSala(id);
-			sala.setAsientos(asientos);
 			sala.setCine(getCineByIdSala(id));
 			ret = sala;
 		}
 		return ret;
 	}
 
-	public ArrayList<Asiento> getAsientosByIdSala(int id) throws SQLException {
-		ArrayList<Asiento> ret = new ArrayList<Asiento>();
-		Statement sm = this.connection.createStatement();
-		String query = "SELECT `asiento_id`,`fila`, `numero`, `disponible`  FROM `asientos` WHERE `sala_id` = '" + id
-				+ "' ";
-		ResultSet rs = sm.executeQuery(query);
-		while (rs.next()) {
-			Asiento asiento = new Asiento();
-			asiento.setId(rs.getInt("asiento_id"));
-			asiento.setFila(rs.getInt("fila"));
-			asiento.setNumero(rs.getInt("numero"));
-			ret.add(asiento);
-		}
-		return ret;
-
-	}
-
 	public Cine getCineByIdSala(int id) throws SQLException {
+		if (!con.isConnected())
+			con.connect();
 		Cine ret = null;
-		Statement sm = this.connection.createStatement();
+		Statement sm = con.connection.createStatement();
 		String query = "SELECT c.cine_id, c.nombre, c.tele , c.email , c.direccion , c.cod_postal , cp.ciudad, cp.provincia FROM `cine`"
 				+ " AS c JOIN codigo_postal AS cp ON c.cod_postal = cp.cod_postal JOIN sala AS s ON s.cine_id = c.cine_id AND s.sala_id = '"
 				+ id + "'";
@@ -222,9 +132,11 @@ public class Connection {
 	}
 
 	public Pelicula getPeliculaByID(int id) throws SQLException {
+		if (!con.isConnected())
+			con.connect();
 		Pelicula ret = null;
 
-		Statement sm = this.connection.createStatement();
+		Statement sm = con.connection.createStatement();
 		String query = "SELECT `titulo_origin`, `titulo_castellano`, `duracion`,`calificacion` FROM `pelicula` WHERE`peli_id` = '"
 				+ id + "'";
 		ResultSet rs = sm.executeQuery(query);
@@ -247,11 +159,13 @@ public class Connection {
 	}
 
 	public ArrayList<Genero> getGeneroByIdPelicula(int id) throws SQLException {
+		if (!con.isConnected())
+			con.connect();
 		ArrayList<Genero> ret = new ArrayList<Genero>();
 
 		String query = "SELECT genero FROM genero AS g JOIN pelicula_genero AS  pg ON pg.genero_id = g.genero_id WHERE pg.peli_id = '"
 				+ id + "'";
-		Statement sm = this.connection.createStatement();
+		Statement sm = con.connection.createStatement();
 		ResultSet rs = sm.executeQuery(query);
 
 		while (rs.next()) {
@@ -265,11 +179,13 @@ public class Connection {
 	}
 
 	public File getImageByIdPelicula(int id, String name) throws SQLException {
+		if (!con.isConnected())
+			con.connect();
 		byte bytes[];
 		Blob blob;
 		FileOutputStream fos = null;
 		File file = new File(name + ".png");
-		Statement sm = this.connection.createStatement();
+		Statement sm = con.connection.createStatement();
 		String query = "SELECT image FROM `pelicula` WHERE `peli_id` = '" + id + "'";
 		ResultSet rs = sm.executeQuery(query);
 
@@ -300,8 +216,8 @@ public class Connection {
 	}
 
 	public ArrayList<Proyeccion> getProyeccionByDate(int id, LocalDate fecha, int idCine) {
-		if (!this.isConnected())
-			this.connect();
+		if (!con.isConnected())
+			con.connect();
 		ArrayList<Proyeccion> ret = new ArrayList<Proyeccion>();
 		Statement sm = null;
 		ResultSet rs = null;
@@ -310,7 +226,7 @@ public class Connection {
 		int idPeli = 0;
 
 		try {
-			sm = this.connection.createStatement();
+			sm = con.connection.createStatement();
 
 			String query = "SELECT sp.id_sala_pelicula , sp.sala_id , sp.peli_id , sp.precio , sp.fecha , sp.hora FROM sala_pelicula AS sp JOIN sala AS s ON sp.sala_id = s.sala_id WHERE sp.peli_id = '"
 					+ id + "' AND s.cine_id = '" + idCine + "'  AND sp.fecha = '" + fecha + "'  ORDER BY sp.hora ASC";
@@ -350,67 +266,11 @@ public class Connection {
 				} catch (SQLException e) {
 				}
 
-				this.disconnect();
+				con.disconnect();
 			}
 		}
 
 		return ret;
-	}
-
-	public String getHostname() {
-		return hostname;
-	}
-
-	public void setHostname(String hostname) {
-		this.hostname = hostname;
-	}
-
-	public String getPort() {
-		return port;
-	}
-
-	public void setPort(String port) {
-		this.port = port;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getDatabase() {
-		return database;
-	}
-
-	public void setDatabase(String database) {
-		this.database = database;
-	}
-
-	public java.sql.Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(java.sql.Connection connection) {
-		this.connection = connection;
-	}
-
-	public boolean isConnected() {
-		try {
-			return this.connection != null && !this.connection.isClosed();
-		} catch (SQLException e) {
-			return false;
-		}
 	}
 
 }
