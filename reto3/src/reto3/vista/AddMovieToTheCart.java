@@ -1,30 +1,28 @@
 package reto3.vista;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import reto3.bbdd.pojo.Factura;
-import reto3.bbdd.pojo.Proyeccion;
-import reto3.controlador.Connection;
-import reto3.controlador.Gestor;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import reto3.bbdd.gestores.GestorProyeccion;
+import reto3.bbdd.pojo.Entrada;
+import reto3.bbdd.pojo.Factura;
+import reto3.bbdd.pojo.Proyeccion;
+import reto3.controlador.Gestor;
+import reto3.controlador.Cart.Carrito;
 
 public class AddMovieToTheCart extends JFrame {
 
+	private static final long serialVersionUID = -4470453863269260917L;
 	private JPanel contentPane;
 	private JButton btnPlus;
 	private JButton btnMinus;
@@ -33,28 +31,7 @@ public class AddMovieToTheCart extends JFrame {
 	private JButton btnAdd;
 	private JPanel panel;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		Proyeccion sesion = null;
-		ArrayList<Factura> compras = null;
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddMovieToTheCart frame = new AddMovieToTheCart(sesion, compras);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public AddMovieToTheCart(Proyeccion sesion, ArrayList<Factura> compras) {
+	public AddMovieToTheCart(Proyeccion sesion, Carrito cart) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 901, 586);
 		contentPane = new JPanel();
@@ -81,7 +58,7 @@ public class AddMovieToTheCart extends JFrame {
 		btnPlus.setFont(new Font("Tahoma", Font.BOLD, 48));
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, sesion, compras);
+				cambiarPanel(e, sesion, cart);
 			}
 
 		});
@@ -95,7 +72,7 @@ public class AddMovieToTheCart extends JFrame {
 		btnMinus.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, sesion, compras);
+				cambiarPanel(e, sesion, cart);
 			}
 
 		});
@@ -107,7 +84,7 @@ public class AddMovieToTheCart extends JFrame {
 		btnAtras.setBackground(Color.WHITE);
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, sesion, compras);
+				cambiarPanel(e, sesion, cart);
 			}
 		});
 		btnAtras.setBounds(590, 471, 178, 46);
@@ -126,14 +103,14 @@ public class AddMovieToTheCart extends JFrame {
 		btnAdd.setBackground(Color.WHITE);
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, sesion, compras);
+				cambiarPanel(e, sesion, cart);
 			}
 		});
 		btnAdd.setBounds(590, 404, 178, 46);
 		panel.add(btnAdd);
 	}
 
-	private void cambiarPanel(ActionEvent e, Proyeccion sesion, ArrayList<Factura> compras) {
+	private void cambiarPanel(ActionEvent e, Proyeccion sesion, Carrito cart) {
 
 		if (e.getSource() == btnPlus) {
 			int cantidad = Integer.parseInt(lblQuantity.getText().toString());
@@ -150,32 +127,39 @@ public class AddMovieToTheCart extends JFrame {
 		if (e.getSource() == btnAtras) {
 			panel.setVisible(false);
 			dispose();
-			Connection con = new Connection();
-			ElegirHora open = new ElegirHora(con.getProyeccionByDate(sesion.getPelicula().getId(),
+			GestorProyeccion gestorProyeccion = new GestorProyeccion();
+			ElegirHora elegirHora = new ElegirHora(gestorProyeccion.getProyeccionByDate(sesion.getPelicula().getId(),
 					new Gestor().convertToLocalDateViaInstant(sesion.getFecha()), sesion.getSala().getCine().getId()),
-					compras);
-			open.setVisible(true);
+					cart);
+			elegirHora.setVisible(true);
 		}
 		if (e.getSource() == btnAdd) {
-			Factura compra = new Factura();
+			if ((!cart.isEmpty()) && (cart.getCompras().size()) == 4) {
 
-			compra.setCantidad(Integer.parseInt(lblQuantity.getText()));
-			compra.setProyeccion(sesion);
-			compra.setPrecio(sesion.getPrecio());
-			compra.setPrecioTotal(sesion.getPrecio() * compra.getCantidad());
-			if (compras == null) {
-				compras = new ArrayList<Factura>();
+				JOptionPane.showMessageDialog(null, "NO puedes realizar mas de 4 compras a la vez !!!");
+				panel.setVisible(false);
+				dispose();
+				SeleccionCines open = new SeleccionCines(cart);
+				open.setVisible(true);
+
+			} else {
+
+				Entrada compra = new Entrada();
+
+				compra.setCantidad(Integer.parseInt(lblQuantity.getText()));
+				compra.setProyeccion(sesion);
+				compra.setPrecio(sesion.getPrecio() * compra.getCantidad());
+
+				cart.addFactura(compra);
+				JOptionPane.showMessageDialog(null,
+						"Operación realizada correctamente, has seleccionado " + sesion.getPelicula().getTitulo() + "\n"
+								+ new Gestor().setDateOfTheDay(sesion.getFecha()) + "\nhora: "
+								+ new Gestor().getTime(sesion.getHora()) + "\nSala:" + sesion.getSala().getNombre());
+				panel.setVisible(false);
+				dispose();
+				SeleccionCines open = new SeleccionCines(cart);
+				open.setVisible(true);
 			}
-			compras.add(compra);
-			JOptionPane.showMessageDialog(null,
-					"Operación realizada correctamente, has seleccionado " + sesion.getPelicula().getTituloCastellano()
-							+ "\n" + new Gestor().setDateOfTheDay(sesion.getFecha()) + "\nhora: "
-							+ new Gestor().getTime(sesion.getHora()) + "\nSala:" + sesion.getSala().getNombre());
-			panel.setVisible(false);
-			dispose();
-			SeleccionCines open = new SeleccionCines(compras);
-			open.setVisible(true);
-
 		}
 
 	}

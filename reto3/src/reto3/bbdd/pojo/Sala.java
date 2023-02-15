@@ -19,13 +19,9 @@ public class Sala implements Serializable {
 
 	// Atributos
 	private String nombre = null;
-	private boolean disponible = true;
 
 	// relacion N:1 con Cine
 	private Cine cine = null;
-
-	// relacion 1:N con Asiento
-	private List<Asiento> asientos = new ArrayList<Asiento>();
 
 	public int getId() {
 		return id;
@@ -43,14 +39,6 @@ public class Sala implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public boolean isDisponible() {
-		return disponible;
-	}
-
-	public void setDisponible(boolean disponible) {
-		this.disponible = disponible;
-	}
-
 	public Cine getCine() {
 		return cine;
 	}
@@ -59,17 +47,9 @@ public class Sala implements Serializable {
 		this.cine = cine;
 	}
 
-	public List<Asiento> getAsientos() {
-		return asientos;
-	}
-
-	public void setAsientos(List<Asiento> asientos) {
-		this.asientos = asientos;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(asientos, cine, disponible, id, nombre);
+		return Objects.hash(cine, id, nombre);
 	}
 
 	@Override
@@ -81,14 +61,12 @@ public class Sala implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Sala other = (Sala) obj;
-		return Objects.equals(asientos, other.asientos) && Objects.equals(cine, other.cine)
-				&& disponible == other.disponible && id == other.id && Objects.equals(nombre, other.nombre);
+		return Objects.equals(cine, other.cine) && id == other.id && Objects.equals(nombre, other.nombre);
 	}
 
 	@Override
 	public String toString() {
-		return "Sala [id=" + id + ", nombre=" + nombre + ", disponible=" + disponible + ", cine=" + cine + ", asientos="
-				+ asientos + "]";
+		return "Sala [id=" + id + ", nombre=" + nombre + ", cine=" + cine + "]";
 	}
 
 }

@@ -1,61 +1,33 @@
 package reto3.vista;
 
-import java.awt.EventQueue;
-import java.util.ArrayList;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import reto3.bbdd.pojo.Factura;
-import reto3.bbdd.pojo.Proyeccion;
-import reto3.controlador.Gestor;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
+import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import reto3.bbdd.pojo.Proyeccion;
+import reto3.controlador.Gestor;
+import reto3.controlador.Cart.Carrito;
 
 public class ShoppingCart extends JFrame {
 
+	private static final long serialVersionUID = 228090564170995944L;
+
 	private JPanel contentPane;
 	private JPanel panel;
-	private JLabel lblTitle;
 	private JButton btnAtras;
 	private JButton btnComprar;
+	private Gestor gestor = new Gestor();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		ArrayList<Proyeccion> sesiones = null;
-		ArrayList<Factura> compras = null;
-		String message = null;
-		int index = 0;
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ShoppingCart frame = new ShoppingCart(sesiones, compras, message, index);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public ShoppingCart(ArrayList<Proyeccion> sesiones, ArrayList<Factura> compras, String message, int index) {
+	public ShoppingCart(ArrayList<Proyeccion> sesiones, Carrito cart, String message, int index) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 644);
 		contentPane = new JPanel();
@@ -82,7 +54,7 @@ public class ShoppingCart extends JFrame {
 		btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, sesiones, compras, index);
+				cambiarPanel(e, sesiones, cart, index);
 			}
 		});
 		btnAtras.setBounds(27, 556, 119, 38);
@@ -93,40 +65,41 @@ public class ShoppingCart extends JFrame {
 		panel.add(btnComprar);
 
 		JLabel lblPrecioTot = new JLabel("");
-		String precioTotal = new Gestor().calculateTotalPrice(compras);
-
-		lblPrecioTot.setText("PRECIO TOTAL: " + precioTotal + "€");
 		lblPrecioTot.setForeground(Color.BLUE);
 		lblPrecioTot.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPrecioTot.setBounds(203, 508, 275, 24);
 		panel.add(lblPrecioTot);
 
 		JLabel lbldescount = new JLabel("");
-		if (new Gestor().calculateQuantity(compras) != 1) {
-			lbldescount.setText("DESCUENTO % : " + " " + (new Gestor().descuento(compras) * 100) + "" + "%");
-			lbldescount.setForeground(Color.RED);
-			lbldescount.setFont(new Font("Tahoma", Font.BOLD, 16));
-		}
+
 		lbldescount.setBounds(203, 473, 275, 24);
 		panel.add(lbldescount);
-		if (compras != null) {
-			Gestor gestor = new Gestor();
-			gestor.addJpanelToPanelShoppingCart(panel, this, compras, sesiones, index);
+		if (!cart.isEmpty()) {
+			gestor.addJpanelToPanelShoppingCart(panel, this, cart, sesiones, index);
+			String precioTotal = gestor.calculateTotalPrice(cart);
+			lblPrecioTot.setText("PRECIO TOTAL: " + precioTotal + "€");
+			if (gestor.calculateQuantity(cart) != 1) {
+				lbldescount.setText("DESCUENTO % : " + " " + (gestor.descuento(cart) * 100) + "" + "%");
+				lbldescount.setForeground(Color.RED);
+				lbldescount.setFont(new Font("Tahoma", Font.BOLD, 16));
+			}
+
 		}
+
 	}
 
-	private void cambiarPanel(ActionEvent e, ArrayList<Proyeccion> sesiones, ArrayList<Factura> compras, int index) {
+	private void cambiarPanel(ActionEvent e, ArrayList<Proyeccion> sesiones, Carrito cart, int index) {
 
 		if (e.getSource() == btnAtras) {
 			if (index == 1) {
 				this.dispose();
 				panel.setVisible(true);
-				SeleccionCines seleccionCine = new SeleccionCines(compras);
+				SeleccionCines seleccionCine = new SeleccionCines(cart);
 				seleccionCine.setVisible(true);
 			} else {
 				this.dispose();
 				panel.setVisible(true);
-				Peliculas open = new Peliculas(sesiones, compras);
+				Peliculas open = new Peliculas(sesiones, cart);
 				open.setVisible(true);
 			}
 		}

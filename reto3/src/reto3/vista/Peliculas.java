@@ -2,61 +2,32 @@ package reto3.vista;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import reto3.bbdd.pojo.Cine;
-import reto3.bbdd.pojo.Factura;
-import reto3.bbdd.pojo.Proyeccion;
-import reto3.controlador.Connection;
-import reto3.controlador.Gestor;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
+
+import reto3.bbdd.pojo.Proyeccion;
+import reto3.controlador.Gestor;
+import reto3.controlador.Cart.Carrito;
 
 public class Peliculas extends JFrame {
 
+	private static final long serialVersionUID = -3686762417105825415L;
 	private JPanel contentPane;
 	private JPanel panelDos;
 	private JButton btnCarritoDeCompra;
 	private JButton btnAtras;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-
-		ArrayList<Proyeccion> sesiones = null;
-		ArrayList<Factura> compras = null;
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Peliculas frame = new Peliculas(sesiones, compras);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Peliculas(ArrayList<Proyeccion> sesiones, ArrayList<Factura> compras) {
+	public Peliculas(ArrayList<Proyeccion> sesiones, Carrito cart) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1223, 700);
 		contentPane = new JPanel();
@@ -78,13 +49,14 @@ public class Peliculas extends JFrame {
 		btnCarritoDeCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String msg = null;
-				dispose();
-				if (compras == null || compras.size() == 0) {
+				if (cart.isEmpty()) {
 					msg = "0 compras!!";
-					ShoppingCart open = new ShoppingCart(sesiones, compras, msg, 2);
+					ShoppingCart open = new ShoppingCart(sesiones, new Carrito(), msg, 2);
+					dispose();
 					open.setVisible(true);
 				} else {
-					ShoppingCart shopCart = new ShoppingCart(sesiones, compras, null, 2);
+					ShoppingCart shopCart = new ShoppingCart(sesiones, cart, null, 2);
+					dispose();
 					shopCart.setVisible(true);
 				}
 
@@ -98,7 +70,7 @@ public class Peliculas extends JFrame {
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				SeleccionCines open = new SeleccionCines(compras);
+				SeleccionCines open = new SeleccionCines(cart);
 				open.setVisible(true);
 			}
 		});
@@ -112,9 +84,9 @@ public class Peliculas extends JFrame {
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPanel.setBounds(0, 141, 1207, 520);
 		panelDos.setBounds(0, 0, 1920, 1080);
-		panelDos.setPreferredSize(new Dimension(1931, 2000));
+		panelDos.setPreferredSize(new Dimension(1931, 3000));
 		panelDos.setLayout(null);
-		new Gestor().addJpanelToPanelVentanaPelicula(panelDos, this, sesiones, compras);
+		new Gestor().addJpanelToPanelVentanaPelicula(panelDos, this, sesiones, cart);
 		getContentPane().add(scrollPanel);
 
 	}
