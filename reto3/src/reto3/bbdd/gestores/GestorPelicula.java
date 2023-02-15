@@ -6,8 +6,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
-
-
 public class GestorPelicula {
 
 	private static Connection con = new Connection();
@@ -22,8 +20,8 @@ public class GestorPelicula {
 		try {
 			sm = con.connection.createStatement();
 
-			String query = "SELECT sp.fecha , sp.sala_id FROM `sala_pelicula` AS sp JOIN sala AS s ON sp.sala_id = s.sala_id WHERE sp.peli_id ='"
-					+ id + "'AND s.cine_id = '" + idCine + "' AND fecha>= CURRENT_DATE() GROUP BY fecha";
+			String query = "SELECT sp.fecha  FROM proyeccion AS sp JOIN sala AS s ON sp.sala_id = s.sala_id WHERE sp.peli_id ='"
+					+ id + "'AND s.cine_id = '" + idCine + "' AND fecha>= (CURDATE() + INTERVAL 1 DAY) GROUP BY fecha";
 
 			rs = sm.executeQuery(query);
 			while (rs.next()) {

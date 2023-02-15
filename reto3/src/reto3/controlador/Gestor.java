@@ -16,8 +16,7 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import reto3.bbdd.pojo.Factura;
-import reto3.bbdd.pojo.Genero;
+import reto3.bbdd.pojo.Entrada;
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Cart.Carrito;
 import reto3.vista.ElegirHora;
@@ -31,9 +30,11 @@ import reto3.vista.factory.JPanelFactoryWindowShopCart;
 public class Gestor {
 	public double calculatPriceBase(Carrito cart) {
 		double ret = 0.0;
-		for (Factura compra : cart.getCompras()) {
+
+		for (Entrada compra : cart.getCompras()) {
+
 			if (null != compra) {
-				ret += (compra.getPrecioTotal());
+				ret += (compra.getPrecio());
 			}
 
 		}
@@ -55,7 +56,9 @@ public class Gestor {
 
 	public int calculateQuantity(Carrito cart) {
 		int ret = 0;
-		for (Factura compra : cart.getCompras()) {
+
+		for (Entrada compra : cart.getCompras()) {
+
 			if (null != compra) {
 				ret += compra.getCantidad();
 			}
@@ -114,12 +117,17 @@ public class Gestor {
 		return cantidad - 1;
 	}
 
-	public String generoToString(ArrayList<Genero> generos) {
-		String ret = "";
-		for (Genero genero : generos) {
-			ret += genero.getGenero() + "|";
+	public void addnewButtonToVentanaElegirHora(JPanel panel, ElegirHora frame, ArrayList<Proyeccion> sesiones,
+			Carrito cart) {
+		JButtonFactoryWindowElegirHora factory = new JButtonFactoryWindowElegirHora();
+		int count = 0;
+		for (Proyeccion sesion : sesiones) {
+			if (null != sesion) {
+				count++;
+				panel.add(factory.getButton(this, frame, count, sesion, cart));
+
+			}
 		}
-		return ret;
 	}
 
 	public void addnewButtonToVentanaElegirHora(JPanel panel, ElegirHora frame, ArrayList<Proyeccion> sesiones,
@@ -152,7 +160,9 @@ public class Gestor {
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanelFactoryWindowShopCart factory = new JPanelFactoryWindowShopCart();
 		int count = 0;
-		for (Factura compra : cart.getCompras()) {
+
+		for (Entrada compra : cart.getCompras()) {
+
 			if (null != compra) {
 				count++;
 				panel.add(factory.getPanel(this, frame, count, compra, cart, sesiones, index));

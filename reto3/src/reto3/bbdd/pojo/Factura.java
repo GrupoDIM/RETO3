@@ -17,11 +17,10 @@ public class Factura implements Serializable {
 
 	// Atributos
 	private int cantidad;
-	private double precioUnidad;
+  
+	private double descuento;
 	private double precioTotal;
 
-	// fk La relacion entre Factura y Proyeccion es de N:1
-	private Proyeccion proyeccion = null;
 
 	// Foreign key La relacion entre Factura y Cliente es de 1:1
 	private Cliente cliente = null;
@@ -42,12 +41,14 @@ public class Factura implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public double getPrecioUnidad() {
-		return precioUnidad;
+
+	public double getDescuento() {
+		return descuento;
 	}
 
-	public void setPrecioUnidad(double precioUnidad) {
-		this.precioUnidad = precioUnidad;
+	public void setDescuento(double descuento) {
+		this.descuento = descuento;
+
 	}
 
 	public double getPrecioTotal() {
@@ -56,14 +57,6 @@ public class Factura implements Serializable {
 
 	public void setPrecioTotal(double precioTotal) {
 		this.precioTotal = precioTotal;
-	}
-
-	public Proyeccion getProyeccion() {
-		return proyeccion;
-	}
-
-	public void setProyeccion(Proyeccion proyeccion) {
-		this.proyeccion = proyeccion;
 	}
 
 	public Cliente getCliente() {
@@ -76,7 +69,9 @@ public class Factura implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cantidad, cliente, id, precioTotal, precioUnidad, proyeccion);
+
+		return Objects.hash(cantidad, cliente, descuento, id, precioTotal);
+
 	}
 
 	@Override
@@ -88,16 +83,19 @@ public class Factura implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Factura other = (Factura) obj;
-		return cantidad == other.cantidad && Objects.equals(cliente, other.cliente) && id == other.id
-				&& Double.doubleToLongBits(precioTotal) == Double.doubleToLongBits(other.precioTotal)
-				&& Double.doubleToLongBits(precioUnidad) == Double.doubleToLongBits(other.precioUnidad)
-				&& Objects.equals(proyeccion, other.proyeccion);
+
+		return cantidad == other.cantidad && Objects.equals(cliente, other.cliente)
+				&& Double.doubleToLongBits(descuento) == Double.doubleToLongBits(other.descuento) && id == other.id
+				&& Double.doubleToLongBits(precioTotal) == Double.doubleToLongBits(other.precioTotal);
+
 	}
 
 	@Override
 	public String toString() {
-		return "Factura [id=" + id + ", cantidad=" + cantidad + ", precioUnidad=" + precioUnidad + ", precioTotal="
-				+ precioTotal + ", proyeccion=" + proyeccion + ", cliente=" + cliente + "]";
+
+		return "Factura [id=" + id + ", cantidad=" + cantidad + ", descuento=" + descuento + ", precioTotal="
+				+ precioTotal + ", cliente=" + cliente + "]";
+
 	}
 
 }

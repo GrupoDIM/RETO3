@@ -1,9 +1,8 @@
+
 package reto3.bbdd.pojo;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Pelicula implements Serializable {
@@ -12,14 +11,15 @@ public class Pelicula implements Serializable {
 	// Primary key
 	private int id;
 
-	private String tituloOrigin = null;
-	private String tituloCastellano = null;
-	private String duracion;
-	private String descripcion = null;
+	// Atributos
+	private String titulo = null;
+	private int duracion;
 	private double calificacion;
 	private File image = null;
-	// Foreign key //La relacion entre Pelicula y Genero es 1:N
-	private List<Genero> genero = new ArrayList<Genero>();
+	private String genero = null;
+
+	// FK la relacion de 1:1 con Proyeccion
+	private Proyeccion proyeccion = null;
 
 	public int getId() {
 		return id;
@@ -29,36 +29,20 @@ public class Pelicula implements Serializable {
 		this.id = id;
 	}
 
-	public String getTituloOrigin() {
-		return tituloOrigin;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setTituloOrigin(String tituloOrigin) {
-		this.tituloOrigin = tituloOrigin;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
-	public String getTituloCastellano() {
-		return tituloCastellano;
-	}
-
-	public void setTituloCastellano(String tituloCastellano) {
-		this.tituloCastellano = tituloCastellano;
-	}
-
-	public String getDuracion() {
+	public int getDuracion() {
 		return duracion;
 	}
 
-	public void setDuracion(String duracion) {
+	public void setDuracion(int duracion) {
 		this.duracion = duracion;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 
 	public double getCalificacion() {
@@ -69,14 +53,6 @@ public class Pelicula implements Serializable {
 		this.calificacion = calificacion;
 	}
 
-	public List<Genero> getGenero() {
-		return genero;
-	}
-
-	public void setGenero(List<Genero> genero) {
-		this.genero = genero;
-	}
-
 	public File getImage() {
 		return image;
 	}
@@ -85,9 +61,25 @@ public class Pelicula implements Serializable {
 		this.image = image;
 	}
 
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public Proyeccion getProyeccion() {
+		return proyeccion;
+	}
+
+	public void setProyeccion(Proyeccion proyeccion) {
+		this.proyeccion = proyeccion;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(calificacion, descripcion, duracion, genero, id, image, tituloCastellano, tituloOrigin);
+		return Objects.hash(calificacion, duracion, genero, id, image, proyeccion, titulo);
 	}
 
 	@Override
@@ -100,17 +92,15 @@ public class Pelicula implements Serializable {
 			return false;
 		Pelicula other = (Pelicula) obj;
 		return Double.doubleToLongBits(calificacion) == Double.doubleToLongBits(other.calificacion)
-				&& Objects.equals(descripcion, other.descripcion) && Objects.equals(duracion, other.duracion)
-				&& Objects.equals(genero, other.genero) && id == other.id && Objects.equals(image, other.image)
-				&& Objects.equals(tituloCastellano, other.tituloCastellano)
-				&& Objects.equals(tituloOrigin, other.tituloOrigin);
+				&& duracion == other.duracion && Objects.equals(genero, other.genero) && id == other.id
+				&& Objects.equals(image, other.image) && Objects.equals(proyeccion, other.proyeccion)
+				&& Objects.equals(titulo, other.titulo);
 	}
 
 	@Override
 	public String toString() {
-		return "Pelicula [id=" + id + ", tituloOrigin=" + tituloOrigin + ", tituloCastellano=" + tituloCastellano
-				+ ", duracion=" + duracion + ", descripcion=" + descripcion + ", calificacion=" + calificacion
-				+ ", image=" + image + ", genero=" + genero + "]";
+		return "Pelicula [id=" + id + ", titulo=" + titulo + ", duracion=" + duracion + ", calificacion=" + calificacion
+				+ ", image=" + image + ", genero=" + genero + ", proyeccion=" + proyeccion + "]";
 	}
 
 }

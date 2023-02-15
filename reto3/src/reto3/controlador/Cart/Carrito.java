@@ -2,6 +2,9 @@ package reto3.controlador.Cart;
 
 import java.util.ArrayList;
 
+
+import reto3.bbdd.pojo.Entrada;
+
 import reto3.bbdd.pojo.Factura;
 
 /**
@@ -9,22 +12,24 @@ import reto3.bbdd.pojo.Factura;
  */
 public class Carrito {
 
-	private ArrayList<Factura> compras = null;
 
-	public ArrayList<Factura> getCompras() {
+	private ArrayList<Entrada> compras = null;
+
+	public ArrayList<Entrada> getCompras() {
 		return compras;
 	}
 
-	public void setCompras(ArrayList<Factura> compras) {
+	public void setCompras(ArrayList<Entrada> compras) {
 		this.compras = compras;
 	}
 
-	public void addFactura(Factura factura) {
+	public void addFactura(Entrada entrada) {
 		if (!isEmpty()) {
-			compras.add(factura);
+			compras.add(entrada);
 		} else {
-			compras = new ArrayList<Factura>();
-			compras.add(factura);
+			compras = new ArrayList<Entrada>();
+			compras.add(entrada);
+      
 		}
 	}
 

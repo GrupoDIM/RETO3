@@ -11,6 +11,8 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
+import reto3.bbdd.pojo.Entrada;
+
 import reto3.bbdd.pojo.Factura;
 import reto3.controlador.Cart.Carrito;
 
@@ -23,11 +25,13 @@ class GestorTest {
 
 	@Test
 	void testCalculatPriceBase() {
-		Factura factura = new Factura();
-		factura.setPrecioTotal(12);
-		factura.setCantidad(6);
+
+		Entrada entrada = new Entrada();
+		entrada.setPrecio(12);
+		entrada.setCantidad(6);
 		Carrito cart = new Carrito();
-		cart.addFactura(factura);
+		cart.addFactura(entrada);
+
 		double result = gestor.calculatPriceBase(cart);
 		assertEquals(result, 12.0);
 
@@ -35,8 +39,10 @@ class GestorTest {
 
 	@Test
 	void testCalculatQuantity() {
-		Factura factura = new Factura();
-		factura.setPrecioTotal(12);
+
+		Entrada factura = new Entrada();
+		factura.setPrecio(12);
+
 		factura.setCantidad(6);
 		Carrito cart = new Carrito();
 		cart.addFactura(factura);
@@ -47,8 +53,10 @@ class GestorTest {
 
 	@Test
 	void testDescuento() {
-		Factura factura = new Factura();
-		factura.setPrecioTotal(12);
+
+		Entrada factura = new Entrada();
+		factura.setPrecio(12);
+
 		factura.setCantidad(6);
 		Carrito cart = new Carrito();
 		cart.addFactura(factura);

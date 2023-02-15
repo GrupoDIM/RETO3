@@ -29,7 +29,9 @@ public class Proyeccion implements Serializable {
 	// FK relacion de 1:1 con Proyeccion
 	private Sala sala = null;
 
-	// FK relacion de 1:1 con Pelicula
+
+	// FK relacion de 1:1 con Proyeccion
+
 	private Pelicula pelicula = null;
 
 	public LocalDateTime getDatetime() {

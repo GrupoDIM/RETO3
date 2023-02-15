@@ -63,8 +63,7 @@ public class PantallaFechaYSesion extends JFrame {
 		contentPane.add(lblImagen);
 
 		lblTitulo = new JLabel("");
-		lblTitulo.setText(
-				sesion.getPelicula().getTituloCastellano() + "(" + sesion.getPelicula().getTituloOrigin() + ")");
+		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 		lblTitulo.setBounds(340, 97, 516, 33);

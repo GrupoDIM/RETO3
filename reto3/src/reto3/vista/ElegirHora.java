@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import reto3.bbdd.gestores.GestorPelicula;
-import reto3.bbdd.pojo.Genero;
+
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Gestor;
 import reto3.controlador.Cart.Carrito;
@@ -49,20 +49,22 @@ public class ElegirHora extends JFrame {
 
 		JLabel lblTitle = new JLabel("title");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		lblTitle.setText(sesiones.get(0).getPelicula().getTituloCastellano() + "("
-				+ sesiones.get(0).getPelicula().getTituloOrigin() + ")");
+		lblTitle.setText(sesiones.get(0).getPelicula().getTitulo());
 		lblTitle.setBounds(303, 47, 500, 32);
 		panel.add(lblTitle);
 
 		JLabel lblGenero = new JLabel("genero");
+		lblGenero.setText(sesiones.get(0).getPelicula().getGenero());
 		lblGenero.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblGenero.setText(new Gestor().generoToString(new ArrayList<Genero>(sesiones.get(0).getPelicula().getGenero())));
+
+		lblGenero.setText(sesiones.get(0).getPelicula().getGenero());
+
 		lblGenero.setBounds(300, 111, 438, 32);
 		panel.add(lblGenero);
 
 		JLabel lblDuracion = new JLabel("duracion");
 		lblDuracion.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblDuracion.setText(sesiones.get(0).getPelicula().getDuracion());
+		lblDuracion.setText(sesiones.get(0).getPelicula().getDuracion() + "" + "min");
 		lblDuracion.setBounds(303, 158, 105, 24);
 		panel.add(lblDuracion);
 
