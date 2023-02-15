@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import reto3.bbdd.gestores.GestorPelicula;
+
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Gestor;
 import reto3.controlador.Cart.Carrito;
@@ -55,7 +56,9 @@ public class ElegirHora extends JFrame {
 		JLabel lblGenero = new JLabel("genero");
 		lblGenero.setText(sesiones.get(0).getPelicula().getGenero());
 		lblGenero.setFont(new Font("Tahoma", Font.BOLD, 16));
+
 		lblGenero.setText(sesiones.get(0).getPelicula().getGenero());
+
 		lblGenero.setBounds(300, 111, 438, 32);
 		panel.add(lblGenero);
 

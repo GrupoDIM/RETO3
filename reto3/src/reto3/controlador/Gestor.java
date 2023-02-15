@@ -30,7 +30,9 @@ import reto3.vista.factory.JPanelFactoryWindowShopCart;
 public class Gestor {
 	public double calculatPriceBase(Carrito cart) {
 		double ret = 0.0;
+
 		for (Entrada compra : cart.getCompras()) {
+
 			if (null != compra) {
 				ret += (compra.getPrecio());
 			}
@@ -54,7 +56,9 @@ public class Gestor {
 
 	public int calculateQuantity(Carrito cart) {
 		int ret = 0;
+
 		for (Entrada compra : cart.getCompras()) {
+
 			if (null != compra) {
 				ret += compra.getCantidad();
 			}
@@ -126,6 +130,19 @@ public class Gestor {
 		}
 	}
 
+	public void addnewButtonToVentanaElegirHora(JPanel panel, ElegirHora frame, ArrayList<Proyeccion> sesiones,
+			Carrito cart) {
+		JButtonFactoryWindowElegirHora factory = new JButtonFactoryWindowElegirHora();
+		int count = 0;
+		for (Proyeccion sesion : sesiones) {
+			if (null != sesion) {
+				count++;
+				panel.add(factory.getButton(this, frame, count, sesion, cart));
+
+			}
+		}
+	}
+
 	public void addJbuttonToPanelVentanaFechaYSesion(JPanel panel, PantallaFechaYSesion frame, ArrayList<Date> fechas,
 			Proyeccion sesion, Carrito cart) {
 		JButtonFactoryWindowFechaYSesion factory = new JButtonFactoryWindowFechaYSesion();
@@ -143,7 +160,9 @@ public class Gestor {
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanelFactoryWindowShopCart factory = new JPanelFactoryWindowShopCart();
 		int count = 0;
+
 		for (Entrada compra : cart.getCompras()) {
+
 			if (null != compra) {
 				count++;
 				panel.add(factory.getPanel(this, frame, count, compra, cart, sesiones, index));

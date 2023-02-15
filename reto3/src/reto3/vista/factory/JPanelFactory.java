@@ -99,7 +99,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -128,7 +130,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -158,7 +162,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -188,7 +194,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -218,7 +226,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -248,7 +258,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -278,7 +290,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -307,7 +321,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -337,7 +353,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -367,7 +385,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);
@@ -397,7 +417,9 @@ public class JPanelFactory extends JFrame {
 		});
 
 		JLabel lblTitulo = new JLabel("New label");
+
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
+
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(583, 121, 425, 23);

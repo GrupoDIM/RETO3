@@ -17,8 +17,10 @@ public class Factura implements Serializable {
 
 	// Atributos
 	private int cantidad;
+  
 	private double descuento;
 	private double precioTotal;
+
 
 	// Foreign key La relacion entre Factura y Cliente es de 1:1
 	private Cliente cliente = null;
@@ -39,12 +41,14 @@ public class Factura implements Serializable {
 		this.cantidad = cantidad;
 	}
 
+
 	public double getDescuento() {
 		return descuento;
 	}
 
 	public void setDescuento(double descuento) {
 		this.descuento = descuento;
+
 	}
 
 	public double getPrecioTotal() {
@@ -65,7 +69,9 @@ public class Factura implements Serializable {
 
 	@Override
 	public int hashCode() {
+
 		return Objects.hash(cantidad, cliente, descuento, id, precioTotal);
+
 	}
 
 	@Override
@@ -77,15 +83,19 @@ public class Factura implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Factura other = (Factura) obj;
+
 		return cantidad == other.cantidad && Objects.equals(cliente, other.cliente)
 				&& Double.doubleToLongBits(descuento) == Double.doubleToLongBits(other.descuento) && id == other.id
 				&& Double.doubleToLongBits(precioTotal) == Double.doubleToLongBits(other.precioTotal);
+
 	}
 
 	@Override
 	public String toString() {
+
 		return "Factura [id=" + id + ", cantidad=" + cantidad + ", descuento=" + descuento + ", precioTotal="
 				+ precioTotal + ", cliente=" + cliente + "]";
+
 	}
 
 }

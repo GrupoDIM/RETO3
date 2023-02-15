@@ -14,7 +14,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import reto3.bbdd.gestores.GestorProyeccion;
+
 import reto3.bbdd.pojo.Entrada;
+
 import reto3.bbdd.pojo.Factura;
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Gestor;
@@ -144,6 +146,7 @@ public class AddMovieToTheCart extends JFrame {
 
 			} else {
 
+
 				Entrada compra = new Entrada();
 
 				compra.setCantidad(Integer.parseInt(lblQuantity.getText()));
@@ -153,6 +156,7 @@ public class AddMovieToTheCart extends JFrame {
 				cart.addFactura(compra);
 				JOptionPane.showMessageDialog(null,
 						"Operación realizada correctamente, has seleccionado " + sesion.getPelicula().getTitulo() + "\n"
+
 								+ new Gestor().setDateOfTheDay(sesion.getFecha()) + "\nhora: "
 								+ new Gestor().getTime(sesion.getHora()) + "\nSala:" + sesion.getSala().getNombre());
 				panel.setVisible(false);

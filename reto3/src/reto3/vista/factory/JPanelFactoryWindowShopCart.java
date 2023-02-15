@@ -13,7 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+
 import reto3.bbdd.pojo.Entrada;
+
 import reto3.bbdd.pojo.Factura;
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Gestor;
@@ -24,7 +26,9 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 
 	private static final long serialVersionUID = 4099213746768850950L;
 
+
 	public JPanel getPanel(Gestor gestor, ShoppingCart frame, int count, Entrada compra, Carrito cart,
+
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanel ret = null;
 
@@ -51,6 +55,7 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 	}
 
 	private JPanel panelShopCartI(Entrada compra, Carrito cart, Gestor con, ShoppingCart frame,
+
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(255, 255, 255));
@@ -87,7 +92,9 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 
 		JLabel lblTitle = new JLabel("");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+
 		lblTitle.setText(compra.getProyeccion().getPelicula().getTitulo());
+
 		lblTitle.setBounds(88, 11, 274, 14);
 		ret.add(lblTitle);
 
@@ -102,7 +109,9 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 		ret.add(lblCantidad);
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 11));
+
 		lblPrecio.setText("Precio Unidad : " + compra.getProyeccion().getPrecio() + "" + "€");
+
 		lblPrecio.setBounds(88, 78, 274, 14);
 		ret.add(lblPrecio);
 		return ret;
@@ -110,6 +119,7 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 	}
 
 	private JPanel panelShopCartII(int dimension, Entrada compra, Carrito cart, Gestor con, ShoppingCart frame,
+
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(255, 255, 255));
@@ -144,7 +154,9 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 
 		JLabel lblTitle = new JLabel("");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+    
 		lblTitle.setText(compra.getProyeccion().getPelicula().getTitulo());
+
 		lblTitle.setBounds(88, 11, 274, 14);
 		ret.add(lblTitle);
 
@@ -159,14 +171,18 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 		ret.add(lblCantidad);
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 11));
+    
 		lblPrecio.setText("Precio Unidad : " + compra.getProyeccion().getPrecio() + "" + "€");
+
 		lblPrecio.setBounds(88, 78, 274, 14);
 		ret.add(lblPrecio);
 		return ret;
 
 	}
 
+
 	private JPanel panelShopCartIII(int dimension, Entrada compra, Carrito cart, Gestor con, ShoppingCart frame,
+
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(255, 255, 255));
@@ -203,7 +219,9 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 
 		JLabel lblTitle = new JLabel("");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+
 		lblTitle.setText(compra.getProyeccion().getPelicula().getTitulo());
+
 		lblTitle.setBounds(88, 11, 274, 14);
 		ret.add(lblTitle);
 
@@ -218,7 +236,9 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 		ret.add(lblCantidad);
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 11));
+
 		lblPrecio.setText("Precio Unidad : " + compra.getProyeccion().getPrecio() + "" + "€");
+
 		lblPrecio.setBounds(88, 78, 274, 14);
 		ret.add(lblPrecio);
 		return ret;
@@ -226,6 +246,7 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 	}
 
 	private JPanel panelShopCartIV(int dimension, Entrada compra, Carrito cart, Gestor con, ShoppingCart frame,
+
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(255, 255, 255));
@@ -262,7 +283,9 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 
 		JLabel lblTitle = new JLabel("");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+
 		lblTitle.setText(compra.getProyeccion().getPelicula().getTitulo());
+
 		lblTitle.setBounds(88, 11, 274, 14);
 		ret.add(lblTitle);
 
@@ -278,6 +301,7 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblPrecio.setText("Precio Unidad : " + compra.getProyeccion().getPrecio() + "" + "€");
+
 		lblPrecio.setBounds(88, 78, 274, 14);
 		ret.add(lblPrecio);
 

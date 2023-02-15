@@ -49,7 +49,9 @@ public class Sala implements Serializable {
 
 	@Override
 	public int hashCode() {
+
 		return Objects.hash(cine, id, nombre);
+
 	}
 
 	@Override
@@ -61,12 +63,16 @@ public class Sala implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Sala other = (Sala) obj;
+
 		return Objects.equals(cine, other.cine) && id == other.id && Objects.equals(nombre, other.nombre);
+
 	}
 
 	@Override
 	public String toString() {
+  
 		return "Sala [id=" + id + ", nombre=" + nombre + ", cine=" + cine + "]";
+
 	}
 
 }
