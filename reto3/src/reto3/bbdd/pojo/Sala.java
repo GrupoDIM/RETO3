@@ -20,7 +20,7 @@ public class Sala implements Serializable {
 	// Atributos
 	private String nombre = null;
 
-	// relacion N:1 con Cine
+	// FK  relacion 1:1 con Cine
 	private Cine cine = null;
 
 	public int getId() {

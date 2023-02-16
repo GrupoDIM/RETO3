@@ -23,7 +23,7 @@ public class Cine implements Serializable {
 	private String ciudad = null;
 	private String provincia = null;
 	
-	//relacion de 1:N con Sala
+	// FK relacion de 1:N con Sala
 	private ArrayList <Sala> salas = null;
 
 	public int getId() {

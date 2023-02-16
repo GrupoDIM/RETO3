@@ -30,7 +30,7 @@ public class Proyeccion implements Serializable {
 	private Sala sala = null;
 
 
-	// FK relacion de 1:1 con Proyeccion
+	// FK relacion de 1:1 con pelicula
 
 	private Pelicula pelicula = null;
 
