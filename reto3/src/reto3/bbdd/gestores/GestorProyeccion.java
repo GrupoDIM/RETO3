@@ -42,17 +42,14 @@ public class GestorProyeccion {
 		try {
 			sm = con.connection.createStatement();
 
-
 			String query = "SELECT DISTINCT sp.proyeccion_id, sp.sala_id ,`peli_id` , `precio` , `fecha` , `hora` FROM proyeccion AS sp JOIN sala AS s ON sp.sala_id = s.sala_id AND s.cine_id = '"
 					+ id + "' WHERE `fecha` >= (CURDATE() + INTERVAL 1 DAY) GROUP BY `peli_id`";
-
 
 			rs = sm.executeQuery(query);
 			while (rs.next()) {
 				Proyeccion proyec = new Proyeccion();
 
 				proyec.setId(rs.getInt("proyeccion_id"));
-
 
 				idSala = rs.getInt("sala_id");
 				idPeli = rs.getInt("peli_id");
@@ -104,7 +101,7 @@ public class GestorProyeccion {
 		if (rs.next()) {
 			Sala sala = new Sala();
 			sala.setId(rs.getInt("sala_id"));
-      
+
 			sala.setNombre(rs.getString("nombre"));
 
 			sala.setCine(getCineByIdSala(id));
@@ -146,15 +143,16 @@ public class GestorProyeccion {
 		Statement sm = con.connection.createStatement();
 		String query = "SELECT `titulo`, `duracion` , genero ,`calificacion` FROM `pelicula` WHERE`peli_id` = '" + id
 				+ "'";
-        
+
 		ResultSet rs = sm.executeQuery(query);
 
 		if (rs.next()) {
 
 			Pelicula peli = new Pelicula();
 			peli.setId(id);
-      
+
 			peli.setTitulo(rs.getString("titulo"));
+			peli.setGenero(rs.getString("genero"));
 			peli.setDuracion(rs.getInt("duracion"));
 			peli.setCalificacion(rs.getDouble("calificacion"));
 			File img = getImageByIdPelicula(id, peli.getTitulo().trim().toLowerCase());
@@ -174,7 +172,7 @@ public class GestorProyeccion {
 		FileOutputStream fos = null;
 		File file = new File(name + ".png");
 		Statement sm = con.connection.createStatement();
-    
+
 		String query = "SELECT imagen FROM `pelicula` WHERE `peli_id` = '" + id + "'";
 
 		ResultSet rs = sm.executeQuery(query);
@@ -184,7 +182,7 @@ public class GestorProyeccion {
 				fos = new FileOutputStream(file);
 
 				blob = rs.getBlob("imagen");
-        
+
 				bytes = blob.getBytes(1, (int) blob.length());
 				fos.write(bytes);
 			}
@@ -220,11 +218,9 @@ public class GestorProyeccion {
 		try {
 			sm = con.connection.createStatement();
 
-
 			String query = "SELECT sp.proyeccion_id , sp.sala_id , sp.peli_id , sp.precio , sp.fecha , sp.hora "
 					+ "FROM proyeccion AS sp JOIN sala AS s ON sp.sala_id = s.sala_id WHERE sp.peli_id = '" + id
 					+ "' AND s.cine_id = '" + idCine + "' AND sp.fecha ='" + fecha + "' ORDER BY sp.hora ASC";
-
 
 			rs = sm.executeQuery(query);
 			while (rs.next()) {
