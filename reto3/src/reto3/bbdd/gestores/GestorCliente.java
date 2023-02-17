@@ -26,7 +26,7 @@ public class GestorCliente {
 			sm = con.connection.createStatement();
 
 			String query = "SELECT `cliente_id`, `dni`, `nombre`, `apellido1`, `apellido2`, `genero`, `tele` FROM `cliente` WHERE `email` = '"
-					+ email + "' = AND `pass` = '" + pass + "'";
+					+ email + "' AND `pass` = '" + pass + "'";
 
 			rs = sm.executeQuery(query);
 			if (rs.next()) {

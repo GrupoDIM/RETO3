@@ -266,4 +266,64 @@ public class GestorProyeccion {
 		return ret;
 	}
 
+	public Proyeccion getProyeccionById(int id) {
+
+		if (!con.isConnected())
+			con.connect();
+		Proyeccion ret = null;
+		Statement sm = null;
+		ResultSet rs = null;
+
+		int idSala = 0;
+		int idPeli = 0;
+
+		try {
+			sm = con.connection.createStatement();
+
+			String query = "SELECT * FROM proyeccion WHERE proyeccion_id = '" + id + "'";
+
+			rs = sm.executeQuery(query);
+			if (rs.next()) {
+				Proyeccion proyec = new Proyeccion();
+
+				proyec.setId(rs.getInt("proyeccion_id"));
+
+				idSala = rs.getInt("sala_id");
+				idPeli = rs.getInt("peli_id");
+				Double precio = rs.getDouble("precio");
+				java.sql.Date date = rs.getDate("fecha");
+				java.sql.Time time = rs.getTime("hora");
+				Sala sala = getSalaByID(idSala);
+				Pelicula pelicula = getPeliculaByID(idPeli);
+				proyec.setSala(sala);
+				proyec.setPelicula(pelicula);
+				proyec.setPrecio(precio);
+				proyec.setFecha(new Date(date.getTime()));
+				proyec.setHora(new Date(time.getTime()));
+				Gestor gestor = new Gestor();
+				proyec.setDatetime(gestor.converttoLocalDateTime(proyec.getFecha(), proyec.getHora()));
+				ret = proyec;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			}
+			if (sm != null) {
+				try {
+					sm.close();
+				} catch (SQLException e) {
+				}
+
+				con.disconnect();
+			}
+		}
+
+		return ret;
+	}
+
 }

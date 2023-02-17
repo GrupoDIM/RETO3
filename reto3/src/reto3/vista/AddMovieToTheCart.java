@@ -138,7 +138,7 @@ public class AddMovieToTheCart extends JFrame {
 		if (e.getSource() == btnAdd) {
 			if ((!cart.isEmpty()) && (cart.getCompras().size()) == 4) {
 
-				JOptionPane.showMessageDialog(null, "NO puedes realizar mas de 4 compras a la vez !!!");
+				JOptionPane.showMessageDialog(null, "NO puedes realizar mas de 4 compras  !!!");
 				panel.setVisible(false);
 				dispose();
 				SeleccionCines open = new SeleccionCines(cart);
@@ -146,14 +146,13 @@ public class AddMovieToTheCart extends JFrame {
 
 			} else {
 
-
 				Entrada compra = new Entrada();
 
 				compra.setCantidad(Integer.parseInt(lblQuantity.getText()));
 				compra.setProyeccion(sesion);
 				compra.setPrecio(sesion.getPrecio() * compra.getCantidad());
 
-				cart.addFactura(compra);
+				cart.addEntrada(compra);
 				JOptionPane.showMessageDialog(null,
 						"Operación realizada correctamente, has seleccionado " + sesion.getPelicula().getTitulo() + "\n"
 

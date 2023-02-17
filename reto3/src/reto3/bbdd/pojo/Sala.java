@@ -20,8 +20,11 @@ public class Sala implements Serializable {
 	// Atributos
 	private String nombre = null;
 
-	// FK  relacion 1:1 con Cine
+	// FK relacion 1:1 con Cine
 	private Cine cine = null;
+
+	// FK relacion 1:N con proyeccion
+	private ArrayList<Proyeccion> proyecciones = null;
 
 	public int getId() {
 		return id;
@@ -70,7 +73,7 @@ public class Sala implements Serializable {
 
 	@Override
 	public String toString() {
-  
+
 		return "Sala [id=" + id + ", nombre=" + nombre + ", cine=" + cine + "]";
 
 	}

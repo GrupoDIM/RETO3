@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import reto3.bbdd.pojo.Factura;
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Gestor;
 import reto3.controlador.Cart.Carrito;
@@ -61,6 +63,15 @@ public class ShoppingCart extends JFrame {
 		panel.add(btnAtras);
 
 		btnComprar = new JButton("Comprar");
+		btnComprar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cart.size() == 0) {
+					JOptionPane.showMessageDialog(null, "Para Comprar debe seleccionar alguna Pelicula!!");
+				} else {
+					cambiarPanel(e, sesiones, cart, index);
+				}
+			}
+		});
 		btnComprar.setBounds(359, 556, 119, 38);
 		panel.add(btnComprar);
 
@@ -104,7 +115,17 @@ public class ShoppingCart extends JFrame {
 			}
 		}
 		if (e.getSource() == btnComprar) {
-
+			Gestor gestor = new Gestor();
+			Factura factura = new Factura();
+			factura.setDescuento(gestor.descuento(cart));
+			factura.setCantidad(gestor.calculateQuantity(cart));
+			double precio = Double.parseDouble(gestor.calculateTotalPrice(cart).replace(",", "."));
+			factura.setPrecioTotal(precio);
+			cart.getCompras().get(0).setFactura(factura);
+			Login login = new Login(cart);
+			dispose();
+			panel.setVisible(false);
+			login.setVisible(true);
 		}
 	}
 

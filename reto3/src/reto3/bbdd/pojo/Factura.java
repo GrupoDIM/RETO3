@@ -1,6 +1,8 @@
 package reto3.bbdd.pojo;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public class Factura implements Serializable {
@@ -17,13 +19,15 @@ public class Factura implements Serializable {
 
 	// Atributos
 	private int cantidad;
-  
+
 	private double descuento;
 	private double precioTotal;
-
+	private LocalDateTime fechaHora;
 
 	// Foreign key La relacion entre Factura y Cliente es de 1:1
 	private Cliente cliente = null;
+	// fk la relacion de 1:N con Entrada
+	private List<Entrada> entradas = null;
 
 	public int getId() {
 		return id;
@@ -40,7 +44,6 @@ public class Factura implements Serializable {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-
 
 	public double getDescuento() {
 		return descuento;
@@ -67,11 +70,25 @@ public class Factura implements Serializable {
 		this.cliente = cliente;
 	}
 
+	public LocalDateTime getFechaHora() {
+		return fechaHora;
+	}
+
+	public void setFechaHora(LocalDateTime fechaHora) {
+		this.fechaHora = fechaHora;
+	}
+
+	public List<Entrada> getEntradas() {
+		return entradas;
+	}
+
+	public void setEntradas(List<Entrada> entradas) {
+		this.entradas = entradas;
+	}
+
 	@Override
 	public int hashCode() {
-
-		return Objects.hash(cantidad, cliente, descuento, id, precioTotal);
-
+		return Objects.hash(cantidad, cliente, descuento, entradas, fechaHora, id, precioTotal);
 	}
 
 	@Override
@@ -83,19 +100,16 @@ public class Factura implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Factura other = (Factura) obj;
-
 		return cantidad == other.cantidad && Objects.equals(cliente, other.cliente)
-				&& Double.doubleToLongBits(descuento) == Double.doubleToLongBits(other.descuento) && id == other.id
-				&& Double.doubleToLongBits(precioTotal) == Double.doubleToLongBits(other.precioTotal);
-
+				&& Double.doubleToLongBits(descuento) == Double.doubleToLongBits(other.descuento)
+				&& Objects.equals(entradas, other.entradas) && Objects.equals(fechaHora, other.fechaHora)
+				&& id == other.id && Double.doubleToLongBits(precioTotal) == Double.doubleToLongBits(other.precioTotal);
 	}
 
 	@Override
 	public String toString() {
-
 		return "Factura [id=" + id + ", cantidad=" + cantidad + ", descuento=" + descuento + ", precioTotal="
-				+ precioTotal + ", cliente=" + cliente + "]";
-
+				+ precioTotal + ", fechaHora=" + fechaHora + ", cliente=" + cliente + ", entradas=" + entradas + "]";
 	}
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;
@@ -29,7 +30,9 @@ public class Proyeccion implements Serializable {
 	// FK relacion de 1:1 con Proyeccion
 	private Sala sala = null;
 
-
+	//La relación entre proyección y entradas es de 1:N
+    private ArrayList <Entrada> entradas = null;
+	
 	// FK relacion de 1:1 con pelicula
 
 	private Pelicula pelicula = null;

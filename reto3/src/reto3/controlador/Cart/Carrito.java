@@ -2,7 +2,6 @@ package reto3.controlador.Cart;
 
 import java.util.ArrayList;
 
-
 import reto3.bbdd.pojo.Entrada;
 
 import reto3.bbdd.pojo.Factura;
@@ -11,7 +10,6 @@ import reto3.bbdd.pojo.Factura;
  * Carrito de la compra. Se va a pasar por todas las ventanas
  */
 public class Carrito {
-
 
 	private ArrayList<Entrada> compras = null;
 
@@ -23,13 +21,13 @@ public class Carrito {
 		this.compras = compras;
 	}
 
-	public void addFactura(Entrada entrada) {
+	public void addEntrada(Entrada entrada) {
 		if (!isEmpty()) {
 			compras.add(entrada);
 		} else {
 			compras = new ArrayList<Entrada>();
 			compras.add(entrada);
-      
+
 		}
 	}
 
@@ -39,5 +37,10 @@ public class Carrito {
 			ret = true;
 		}
 		return ret;
+	}
+
+	public int size() {
+
+		return compras.size();
 	}
 }

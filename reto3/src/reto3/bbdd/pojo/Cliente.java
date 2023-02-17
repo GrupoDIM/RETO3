@@ -26,7 +26,7 @@ public class Cliente implements Serializable {
 	private char genero;
 
 	// Foreign key //La relacion entre Cliente y Factura es de 0:N
-	private List<Factura> tickets = null;
+	private List<Factura> facturas = null;
 
 	public int getId() {
 		return id;
@@ -101,16 +101,16 @@ public class Cliente implements Serializable {
 	}
 
 	public List<Factura> getTickets() {
-		return tickets;
+		return facturas;
 	}
 
 	public void setTickets(List<Factura> tickets) {
-		this.tickets = tickets;
+		this.facturas = tickets;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellido1, apellido2, dni, email, genero, id, nombre, password, tele, tickets);
+		return Objects.hash(apellido1, apellido2, dni, email, genero, id, nombre, password, tele, facturas);
 	}
 
 	@Override
@@ -125,14 +125,14 @@ public class Cliente implements Serializable {
 		return Objects.equals(apellido1, other.apellido1) && Objects.equals(apellido2, other.apellido2)
 				&& Objects.equals(dni, other.dni) && Objects.equals(email, other.email) && genero == other.genero
 				&& id == other.id && Objects.equals(nombre, other.nombre) && Objects.equals(password, other.password)
-				&& Objects.equals(tele, other.tele) && Objects.equals(tickets, other.tickets);
+				&& Objects.equals(tele, other.tele) && Objects.equals(facturas, other.facturas);
 	}
 
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
 				+ apellido2 + ", email=" + email + ", tele=" + tele + ", password=" + password + ", genero=" + genero
-				+ ", tickets=" + tickets + "]";
+				+ ", tickets=" + facturas + "]";
 	}
 
 }

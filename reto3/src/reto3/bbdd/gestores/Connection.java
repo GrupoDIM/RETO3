@@ -17,7 +17,6 @@ public class Connection {
 		this.port = "3306";
 		this.username = "root";
 		this.password = "";
-    
 		this.database = "cine";
 	}
 
