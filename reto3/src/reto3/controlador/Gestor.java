@@ -130,19 +130,6 @@ public class Gestor {
 		}
 	}
 
-	public void addnewButtonToVentanaElegirHora(JPanel panel, ElegirHora frame, ArrayList<Proyeccion> sesiones,
-			Carrito cart) {
-		JButtonFactoryWindowElegirHora factory = new JButtonFactoryWindowElegirHora();
-		int count = 0;
-		for (Proyeccion sesion : sesiones) {
-			if (null != sesion) {
-				count++;
-				panel.add(factory.getButton(this, frame, count, sesion, cart));
-
-			}
-		}
-	}
-
 	public void addJbuttonToPanelVentanaFechaYSesion(JPanel panel, PantallaFechaYSesion frame, ArrayList<Date> fechas,
 			Proyeccion sesion, Carrito cart) {
 		JButtonFactoryWindowFechaYSesion factory = new JButtonFactoryWindowFechaYSesion();

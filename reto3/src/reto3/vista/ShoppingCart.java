@@ -16,30 +16,36 @@ import javax.swing.border.EmptyBorder;
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Gestor;
 import reto3.controlador.Cart.Carrito;
+import javax.swing.ImageIcon;
 
 public class ShoppingCart extends JFrame {
 
 	private static final long serialVersionUID = 228090564170995944L;
 
-	private JPanel contentPane;
+	private JPanel contentPaneShopping;
 	private JPanel panel;
 	private JButton btnAtras;
 	private JButton btnComprar;
 	private Gestor gestor = new Gestor();
+	private JLabel lblNewLabel;
+	private JPanel jPanelBarraSuperior;
 
 	public ShoppingCart(ArrayList<Proyeccion> sesiones, Carrito cart, String message, int index) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 504, 644);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(100, 100, 1223, 700);
+		contentPaneShopping = new JPanel();
+		contentPaneShopping.setBackground(new Color(33, 18, 97));
+		contentPaneShopping.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setResizable(false); // Desativado la redimenzionalidad
+		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setContentPane(contentPaneShopping);
+		contentPaneShopping.setLayout(null);
 
 		panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 488, 605);
-		contentPane.add(panel);
+		panel.setBackground(new Color(33, 18, 97));
+		panel.setBounds(0, 50, 1207, 561);
+		contentPaneShopping.add(panel);
 		panel.setLayout(null);
 
 		JLabel lblMessage = new JLabel("");
@@ -51,29 +57,41 @@ public class ShoppingCart extends JFrame {
 		lblMessage.setBounds(99, 172, 308, 52);
 		panel.add(lblMessage);
 
-		btnAtras = new JButton("Atras");
-		btnAtras.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, sesiones, cart, index);
-			}
-		});
-		btnAtras.setBounds(27, 556, 119, 38);
-		panel.add(btnAtras);
-
 		btnComprar = new JButton("Comprar");
-		btnComprar.setBounds(359, 556, 119, 38);
+		btnComprar.setBounds(359, 500, 119, 38);
 		panel.add(btnComprar);
 
 		JLabel lblPrecioTot = new JLabel("");
 		lblPrecioTot.setForeground(Color.BLUE);
 		lblPrecioTot.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPrecioTot.setBounds(203, 508, 275, 24);
+		lblPrecioTot.setBounds(203, 450, 275, 24);
 		panel.add(lblPrecioTot);
 
 		JLabel lbldescount = new JLabel("");
 
-		lbldescount.setBounds(203, 473, 275, 24);
+		lbldescount.setBounds(203, 430, 275, 24);
 		panel.add(lbldescount);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/Footer.png")));
+		lblNewLabel.setBounds(0, 611, 1207, 50);
+		contentPaneShopping.add(lblNewLabel);
+		
+		jPanelBarraSuperior = new JPanel();
+		jPanelBarraSuperior.setLayout(null);
+		jPanelBarraSuperior.setBackground(new Color(248, 212, 64));
+		jPanelBarraSuperior.setBounds(0, 0, 1207, 50);
+		contentPaneShopping.add(jPanelBarraSuperior);
+		
+				btnAtras = new JButton("");
+				btnAtras.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/BotonAtras90x50.png")));
+				btnAtras.setBounds(34, 0, 90, 50);
+				jPanelBarraSuperior.add(btnAtras);
+				btnAtras.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						cambiarPanel(e, sesiones, cart, index);
+					}
+				});
 		if (!cart.isEmpty()) {
 			gestor.addJpanelToPanelShoppingCart(panel, this, cart, sesiones, index);
 			String precioTotal = gestor.calculateTotalPrice(cart);

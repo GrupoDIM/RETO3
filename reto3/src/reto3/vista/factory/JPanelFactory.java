@@ -19,6 +19,8 @@ import reto3.vista.PantallaFechaYSesion;
 import reto3.vista.Peliculas;
 
 public class JPanelFactory extends JFrame {
+	public JPanelFactory() {
+	}
 
 	private static final long serialVersionUID = 3441961518738822431L;
 
@@ -78,15 +80,17 @@ public class JPanelFactory extends JFrame {
 
 	private JPanel jpanelI(Peliculas frame, Gestor con, Proyeccion sesion, Carrito cart) {
 
+		// JPANEL | PELICULA Nº1
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, 0, 1189, 292);
+		ret.setBackground(new Color(0, 0, 0));
+		ret.setBounds(150, 20, 800, 250);
 		ret.setLayout(null);
+
+		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº1
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,26 +102,30 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
+		// JLABEL | TITULO DE PELICULA Nº1
 		JLabel lblTitulo = new JLabel("");
-
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.WHITE);
 		ret.add(lblTitulo);
+
+		//
 		return ret;
 	}
 
 	private JPanel jpanelII(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
+
+		// JBUTTON | IMAGEN "PORTADA DE PELICULA Nº2"
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,26 +137,28 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
+		// JLABEL | TITULO DE PELICULA Nº2
 		JLabel lblTitulo = new JLabel("New label");
-
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.BLACK);
 		ret.add(lblTitulo);
 		return ret;
 	}
 
 	private JPanel jpanelIII(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBackground(new Color(0, 0, 0));
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
-		JButton btnImage = new JButton("New button");
+
+		// JBUTTON | BOTON DE IMAGEN
+		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -161,26 +171,30 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		JLabel lblTitulo = new JLabel("New label");
-
+		// JLABEL | TITULO DE PELICULA Nº3
+		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.WHITE);
 		ret.add(lblTitulo);
+
+		//
 		return ret;
 	}
 
 	private JPanel jpanelIV(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
-		JButton btnImage = new JButton("New button");
+
+		// JBUTTON |BOTON DE IMAGEN DE PELICULA Nº4
+		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -193,26 +207,28 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		JLabel lblTitulo = new JLabel("New label");
-
+		// JLABEL | TITULO DE PELICULA Nº4
+		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.BLACK);
 		ret.add(lblTitulo);
 		return ret;
 	}
 
 	private JPanel jpanelV(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBackground(new Color(0, 0, 0));
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
-		JButton btnImage = new JButton("New button");
+
+		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº5
+		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -225,13 +241,13 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		JLabel lblTitulo = new JLabel("New label");
-
+		// JLABEL | TITULO DE PELICULA Nº5
+		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.WHITE);
 		ret.add(lblTitulo);
 		return ret;
 	}
@@ -239,12 +255,14 @@ public class JPanelFactory extends JFrame {
 	private JPanel jpanelVI(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
-		JButton btnImage = new JButton("New button");
+
+		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº6
+		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -257,26 +275,30 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		JLabel lblTitulo = new JLabel("New label");
-
+		// JLABEL | TITULO DE PELICULA Nº6
+		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.BLACK);
 		ret.add(lblTitulo);
+
+		//
 		return ret;
 	}
 
 	private JPanel jpanelVII(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBackground(new Color(0, 0, 0));
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
-		JButton btnImage = new JButton("New button");
+
+		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº7
+		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -289,13 +311,13 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		JLabel lblTitulo = new JLabel("New label");
-
+		// JLABEL | TITULO DE PELICULA Nº7
+		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.WHITE);
 		ret.add(lblTitulo);
 		return ret;
 	}
@@ -303,12 +325,14 @@ public class JPanelFactory extends JFrame {
 	private JPanel jpanelVIII(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
-		JButton btnImage = new JButton("New button");
+
+		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº8
+		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -320,26 +344,30 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		JLabel lblTitulo = new JLabel("New label");
-
+		// JLABEL | TITULO DE PALICULA Nº8
+		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.BLACK);
 		ret.add(lblTitulo);
+
+		//
 		return ret;
 	}
 
 	private JPanel jpanelIX(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBackground(new Color(0, 0, 0));
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
-		JButton btnImage = new JButton("New button");
+
+		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº9
+		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -352,26 +380,30 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		JLabel lblTitulo = new JLabel("New label");
-
+		// JLABEL | TITULO DE PELICULA Nº9
+		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.WHITE);
 		ret.add(lblTitulo);
+
+		//
 		return ret;
 	}
 
 	private JPanel jpanelX(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
-		JButton btnImage = new JButton("New button");
+
+		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº10
+		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -384,26 +416,30 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		JLabel lblTitulo = new JLabel("New label");
-
+		// JLABEL | TITULO DE PELICULA Nº10
+		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.WHITE);
 		ret.add(lblTitulo);
+		
+		//
 		return ret;
 	}
 
 	private JPanel jpanelXI(Peliculas frame, int dimension, Gestor con, Proyeccion sesion, Carrito cart) {
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 1189, 292);
+		ret.setBackground(new Color(0, 0, 0));
+		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
-		JButton btnImage = new JButton("New button");
+
+		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº11
+		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
-				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(309, 250, WIDTH)));
-		btnImage.setBounds(108, 22, 309, 247);
+				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
+		btnImage.setBounds(100, 25, 150, 200);
 		ret.add(btnImage);
 		btnImage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -416,14 +452,16 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
+		// JLABEL | TITULO DE PELICULA Nº11
 		JLabel lblTitulo = new JLabel("New label");
-
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
-
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(583, 121, 425, 23);
+		lblTitulo.setBounds(300, 121, 425, 23);
+		lblTitulo.setForeground(Color.WHITE);
 		ret.add(lblTitulo);
+		
+		//
 		return ret;
 	}
 

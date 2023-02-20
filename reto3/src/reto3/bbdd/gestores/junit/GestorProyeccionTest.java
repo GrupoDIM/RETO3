@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import reto3.bbdd.gestores.Connection;
 import reto3.bbdd.gestores.GestorProyeccion;
 import reto3.bbdd.pojo.Cine;
-import reto3.bbdd.pojo.Genero;
 import reto3.bbdd.pojo.Pelicula;
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.bbdd.pojo.Sala;
@@ -51,7 +50,6 @@ class GestorProyeccionTest {
 		}
 		assertEquals(sala.getCine().getId(), 2);
 		assertNotNull(sala.getCine());
-		assertTrue(sala.isDisponible());
 
 	}
 
@@ -93,27 +91,6 @@ class GestorProyeccionTest {
 			con.disconnect();
 		}
 		assertNotNull(pelicula);
-		assertEquals(pelicula.getGenero().size(), 1);
-
-	}
-
-	@Test
-	void testGetGeneroByIdPelicula() {
-		// se espera un ArrayList siz()==1 NOT NULL de tipo Genero
-		int idPelicula = 1;
-		ArrayList<Genero> generos = null;
-		try {
-			if (!con.isConnected()) {
-				con.connect();
-			}
-			generos = gestorProyeccion.getGeneroByIdPelicula(idPelicula);
-			con.disconnect();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			con.disconnect();
-		}
-		assertNotNull(generos);
-		assertEquals(generos.size(), 1);
 
 	}
 

@@ -21,40 +21,50 @@ import reto3.bbdd.pojo.Factura;
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Gestor;
 import reto3.controlador.Cart.Carrito;
+import javax.swing.ImageIcon;
 
 public class AddMovieToTheCart extends JFrame {
 
 	private static final long serialVersionUID = -4470453863269260917L;
-	private JPanel contentPane;
+	private JPanel contentPaneAddMovie;
 	private JButton btnPlus;
 	private JButton btnMinus;
 	private JButton btnAtras;
 	private JLabel lblQuantity;
 	private JButton btnAdd;
 	private JPanel panel;
+	private JPanel jPanelBarraSuperior;
+	private JButton btnAtras_1;
+	private JLabel lblNewLabel;
+	private JLabel lblSeleccioneLaCantidad;
+	private JLabel lblNewLabel_1;
 
 	public AddMovieToTheCart(Proyeccion sesion, Carrito cart) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 901, 586);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(100, 100, 1223, 700);
+		contentPaneAddMovie = new JPanel();
+		contentPaneAddMovie.setBackground(new Color(33, 18, 97));
+		contentPaneAddMovie.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setResizable(false); // Desativado la redimenzionalidad
+		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setContentPane(contentPaneAddMovie);
+		contentPaneAddMovie.setLayout(null);
 
 		panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 885, 547);
-		contentPane.add(panel);
+		panel.setBackground(new Color(33, 18, 97));
+		panel.setBounds(0, 50, 1207, 563);
+		contentPaneAddMovie.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblImage = new JLabel("New label");
+		JLabel lblImage = new JLabel("");
 		lblImage.setIcon(new javax.swing.ImageIcon(
 				new Gestor().readimg(sesion.getPelicula().getImage()).getScaledInstance(316, 400, WIDTH)));
-		lblImage.setBounds(55, 38, 316, 400);
+		lblImage.setBounds(104, 81, 330, 400);
 		panel.add(lblImage);
 
-		btnPlus = new JButton("+");
+		btnPlus = new JButton("");
+		btnPlus.setIcon(new ImageIcon(AddMovieToTheCart.class.getResource("/reto3/vista/imagenes/BotonMas90x50.png")));
 		btnPlus.setBackground(Color.WHITE);
 		btnPlus.setForeground(Color.GREEN);
 		btnPlus.setFont(new Font("Tahoma", Font.BOLD, 48));
@@ -64,13 +74,14 @@ public class AddMovieToTheCart extends JFrame {
 			}
 
 		});
-		btnPlus.setBounds(701, 166, 82, 59);
+		btnPlus.setBounds(862, 262, 90, 50);
 		panel.add(btnPlus);
 
-		btnMinus = new JButton("-");
+		btnMinus = new JButton("");
+		btnMinus.setIcon(new ImageIcon(AddMovieToTheCart.class.getResource("/reto3/vista/imagenes/BotonMenos90x50.png")));
 		btnMinus.setBackground(Color.WHITE);
 		btnMinus.setForeground(Color.RED);
-		btnMinus.setFont(new Font("Verdana", Font.BOLD, 75));
+		btnMinus.setFont(new Font("Arial Black", Font.BOLD, 30));
 		btnMinus.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -78,38 +89,67 @@ public class AddMovieToTheCart extends JFrame {
 			}
 
 		});
-		btnMinus.setBounds(501, 166, 82, 59);
+		btnMinus.setBounds(662, 262, 90, 50);
 		panel.add(btnMinus);
 
-		btnAtras = new JButton("Atras");
-		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnAtras.setBackground(Color.WHITE);
-		btnAtras.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cambiarPanel(e, sesion, cart);
-			}
-		});
-		btnAtras.setBounds(590, 471, 178, 46);
-		panel.add(btnAtras);
-
 		lblQuantity = new JLabel("quantity");
-		lblQuantity.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+		lblQuantity.setForeground(new Color(255, 255, 255));
+		lblQuantity.setFont(new Font("Arial Black", Font.BOLD, 30));
 		lblQuantity.setText("1");
 
 		lblQuantity.setHorizontalAlignment(SwingConstants.CENTER);
-		lblQuantity.setBounds(578, 101, 105, 25);
+		lblQuantity.setBounds(762, 262, 90, 50);
 		panel.add(lblQuantity);
 
 		btnAdd = new JButton("AÑADIR AL CARRITO");
-		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnAdd.setBackground(Color.WHITE);
+		btnAdd.setForeground(new Color(255, 255, 255));
+		btnAdd.setFont(new Font("Arial Black", Font.BOLD, 30));
+		btnAdd.setBackground(new Color(0, 0, 0));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cambiarPanel(e, sesion, cart);
 			}
 		});
-		btnAdd.setBounds(590, 404, 178, 46);
+		btnAdd.setBounds(568, 358, 500, 50);
 		panel.add(btnAdd);
+		
+		lblSeleccioneLaCantidad = new JLabel("SELECCIONE LA CANTIDAD DESEADA");
+		lblSeleccioneLaCantidad.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeleccioneLaCantidad.setForeground(Color.WHITE);
+		lblSeleccioneLaCantidad.setFont(new Font("Arial Black", Font.BOLD, 30));
+		lblSeleccioneLaCantidad.setBounds(460, 128, 709, 50);
+		panel.add(lblSeleccioneLaCantidad);
+		
+		lblNewLabel_1 = new JLabel("(HAGA CLICK SOBRE EL MAS O MENOS)");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setForeground(new Color(248, 212, 64));
+		lblNewLabel_1.setFont(new Font("Arial Black", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(537, 175, 570, 29);
+		panel.add(lblNewLabel_1);
+
+		jPanelBarraSuperior = new JPanel();
+		jPanelBarraSuperior.setLayout(null);
+		jPanelBarraSuperior.setBackground(new Color(248, 212, 64));
+		jPanelBarraSuperior.setBounds(0, 0, 1207, 50);
+		contentPaneAddMovie.add(jPanelBarraSuperior);
+
+		btnAtras = new JButton("");
+		btnAtras.setIcon(new ImageIcon(AddMovieToTheCart.class.getResource("/reto3/vista/imagenes/BotonAtras90x50.png")));
+		btnAtras.setBounds(29, 0, 90, 50);
+		jPanelBarraSuperior.add(btnAtras);
+		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnAtras.setBackground(Color.WHITE);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(AddMovieToTheCart.class.getResource("/reto3/vista/imagenes/Footer.png")));
+		lblNewLabel.setBounds(0, 611, 1207, 50);
+		contentPaneAddMovie.add(lblNewLabel);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cambiarPanel(e, sesion, cart);
+			}
+		});
+
 	}
 
 	private void cambiarPanel(ActionEvent e, Proyeccion sesion, Carrito cart) {
@@ -145,7 +185,6 @@ public class AddMovieToTheCart extends JFrame {
 				open.setVisible(true);
 
 			} else {
-
 
 				Entrada compra = new Entrada();
 
