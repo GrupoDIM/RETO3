@@ -1,15 +1,11 @@
 package reto3.bbdd.pojo;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;
-
-import reto3.controlador.Gestor;
 
 public class Proyeccion implements Serializable {
 
@@ -92,6 +88,16 @@ public class Proyeccion implements Serializable {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	
+
+	public ArrayList<Entrada> getEntradas() {
+		return entradas;
+	}
+
+	public void setEntradas(ArrayList<Entrada> entradas) {
+		this.entradas = entradas;
+	}
+
 
 	public static class orderSessionesByDateTime implements Comparator<Proyeccion> {
 		@Override
@@ -100,9 +106,10 @@ public class Proyeccion implements Serializable {
 		}
 	}
 
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(datetime, fecha, hora, id, pelicula, precio, sala);
+		return Objects.hash(datetime, entradas, fecha, hora, id, pelicula, precio, sala);
 	}
 
 	@Override
@@ -114,16 +121,19 @@ public class Proyeccion implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Proyeccion other = (Proyeccion) obj;
-		return Objects.equals(datetime, other.datetime) && Objects.equals(fecha, other.fecha)
-				&& Objects.equals(hora, other.hora) && id == other.id && Objects.equals(pelicula, other.pelicula)
+		return Objects.equals(datetime, other.datetime) && Objects.equals(entradas, other.entradas)
+				&& Objects.equals(fecha, other.fecha) && Objects.equals(hora, other.hora) && id == other.id
+				&& Objects.equals(pelicula, other.pelicula)
 				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
 				&& Objects.equals(sala, other.sala);
 	}
 
 	@Override
 	public String toString() {
-		return "Proyeccion [id=" + id + ", sala=" + sala + ", pelicula=" + pelicula + ", fecha=" + fecha + ", hora="
-				+ hora + ", datetime=" + datetime + ", precio=" + precio + "]";
+		return "Proyeccion [id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", datetime=" + datetime + ", precio="
+				+ precio + ", sala=" + sala + ", entradas=" + entradas + ", pelicula=" + pelicula + "]";
 	}
+
+
 
 }

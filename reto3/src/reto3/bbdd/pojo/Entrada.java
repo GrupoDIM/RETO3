@@ -15,7 +15,6 @@ public class Entrada implements Serializable {
 	// ATRIBUTOS
 	private int cantidad = 0;
 	private double precio = 0;
-	
 
 	public Proyeccion getProyeccion() {
 		return proyeccion;
