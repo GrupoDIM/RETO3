@@ -24,19 +24,22 @@ public class Bienvenida {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() { 
+		// FRAME | INICIAL
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1223, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
+		frame.setResizable(false); // Desativado la redimenzionalidad
+		frame.setLocationRelativeTo(null); // Posicionamiento central de la pantalla
 		frame.getContentPane().setLayout(null);
 
+		// PANEL | "BIENVENIDA"
 		JPanel panelBienvenida = new JPanel();
 		panelBienvenida.setBounds(0, 0, 1207, 661);
 		frame.getContentPane().add(panelBienvenida);
 		panelBienvenida.setLayout(null);
 
+		// JBUTTON | "BIENVENIDA"
 		JButton jButtonBienvenida = new JButton("");
 		jButtonBienvenida.setIcon(new ImageIcon(Bienvenida.class.getResource("/reto3/vista/imagenes/Bienvenida.png")));
 		jButtonBienvenida.setBounds(0, 0, 1207, 661);
@@ -45,7 +48,6 @@ public class Bienvenida {
 			public void actionPerformed(ActionEvent e) {
 				panelBienvenida.setVisible(false); 
 				frame.dispose(); 
-				
 				SeleccionCines seleccionCines = new SeleccionCines(new Carrito());
 				seleccionCines.setVisible(true);
 			}
