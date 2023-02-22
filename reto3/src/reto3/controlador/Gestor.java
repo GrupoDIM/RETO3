@@ -46,7 +46,7 @@ public class Gestor {
 		double totalPrice = 0;
 		double precioBase = calculatPriceBase(cart);
 		if (descuento(cart) != 0) {
-			totalPrice = precioBase * descuento(cart);
+			totalPrice = precioBase - (precioBase * descuento(cart));
 		} else {
 			totalPrice = precioBase;
 		}

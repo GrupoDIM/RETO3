@@ -72,14 +72,14 @@ public class GestorFacturaEntrada {
 		ResultSet rs = sm.executeQuery(query);
 		if (rs.next()) {
 			Factura factura = new Factura();
-			Cliente cliente = new Cliente();
-			cliente.setId(rs.getInt("cliente_id"));
+			Cliente cliente = new GestorCliente().getClienteById(rs.getInt("cliente_id"));
 			factura.setCliente(cliente);
 			factura.setId(rs.getInt("factura_id"));
 			factura.setFechaHora(rs.getTimestamp("fecha_hora").toLocalDateTime());
 			factura.setPrecioTotal(rs.getDouble("precio"));
 			factura.setDescuento(rs.getDouble("DESCUENTO"));
-
+			ArrayList<Entrada> entradas = getEntradasByIdFactura(factura.getId());
+			factura.setEntradas(entradas);
 			ret = factura;
 		}
 
@@ -97,49 +97,24 @@ public class GestorFacturaEntrada {
 
 	}
 
-	public Factura geFacturaById(int id) {
+	public ArrayList<Entrada> getEntradasByIdFactura(int id) throws SQLException {
 		if (!con.isConnected())
 			con.connect();
-		Factura ret = null;
-		Statement sm = null;
-		ResultSet rs = null;
-
-		try {
-			sm = con.connection.createStatement();
-
-			String query = "";
-
-			rs = sm.executeQuery(query);
-			while (rs.next()) {
-
-				Factura factura = new Factura();
-				factura.setId(id);
-				factura.setDescuento(rs.getDouble("descuento"));
-				factura.setDescuento(rs.getDouble("precio"));
-				Entrada entrada = new Entrada();
-				entrada.setCantidad(rs.getInt("cantidad"));
-				entrada.setPrecio(rs.getInt("precio"));
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			}
-			if (sm != null) {
-				try {
-					sm.close();
-				} catch (SQLException e) {
-				}
-
-				con.disconnect();
-			}
+		ArrayList<Entrada> ret = new ArrayList<Entrada>();
+		Statement sm = con.connection.createStatement();
+		String query = "SELECT `proyeccio_id`, `cantidad`, `precio` FROM `entrada` WHERE `factura_id` = '" + id + "'";
+		sm = con.connection.prepareStatement(query);
+		ResultSet rs = sm.executeQuery(query);
+		while (rs.next()) {
+			Entrada entrada = new Entrada();
+			Proyeccion proyeccion = new GestorProyeccion().getProyeccionById(rs.getInt("proyeccio_id"));
+			entrada.setProyeccion(proyeccion);
+			entrada.setCantidad(rs.getInt("cantidad"));
+			entrada.setPrecio(rs.getDouble("precio"));
+			ret.add(entrada);
 		}
+
 		return ret;
 	}
+
 }

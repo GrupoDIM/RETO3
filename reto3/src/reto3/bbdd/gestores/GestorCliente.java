@@ -90,4 +90,52 @@ public class GestorCliente {
 
 	}
 
+	public Cliente getClienteById(int id) {
+		if (!con.isConnected())
+			con.connect();
+		Cliente ret = null;
+		Statement sm = null;
+		ResultSet rs = null;
+
+		try {
+			sm = con.connection.createStatement();
+
+			String query = "SELECT `cliente_id`, `dni`, `nombre`, `apellido1`, `apellido2`, `genero`, `tele` , email  FROM `cliente` WHERE  `cliente_id` = '"
+					+ id + "'";
+
+			rs = sm.executeQuery(query);
+			if (rs.next()) {
+
+				Cliente cliente = new Cliente();
+				cliente.setId(rs.getInt("cliente_id"));
+				cliente.setDni(rs.getString("dni"));
+				cliente.setNombre(rs.getString("nombre"));
+				cliente.setApellido1(rs.getString("apellido1"));
+				cliente.setApellido2(rs.getString("apellido2"));
+				cliente.setGenero(rs.getString("genero").charAt(0));
+				cliente.setTele(rs.getString("tele"));
+				cliente.setEmail(rs.getString("email"));
+				ret = cliente;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			}
+			if (sm != null) {
+				try {
+					sm.close();
+				} catch (SQLException e) {
+				}
+
+				con.disconnect();
+			}
+		}
+		return ret;
+	}
+
 }

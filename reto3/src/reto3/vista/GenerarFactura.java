@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import reto3.bbdd.gestores.GestorFicheros;
+import reto3.bbdd.pojo.Factura;
 import reto3.controlador.Cart.Carrito;
 
 public class GenerarFactura extends JFrame {
@@ -16,7 +17,7 @@ public class GenerarFactura extends JFrame {
 	private static final long serialVersionUID = -3459780300651637500L;
 	private JPanel contentPane;
 
-	public GenerarFactura(Carrito cart) {
+	public GenerarFactura(Factura factura , Carrito cart) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 790, 501);
 		contentPane = new JPanel();
@@ -29,7 +30,7 @@ public class GenerarFactura extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GestorFicheros gestor = new GestorFicheros();
-				gestor.writeFile(cart);
+				gestor.writeFile(factura);
 				cart.getCompras().clear();
 				Bienvenida bienvenida = new Bienvenida();
 				dispose();

@@ -2,6 +2,7 @@ package reto3.vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -13,9 +14,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import reto3.bbdd.gestores.Connection;
 import reto3.bbdd.gestores.GestorCliente;
 import reto3.bbdd.gestores.GestorFacturaEntrada;
 import reto3.bbdd.pojo.Cliente;
+import reto3.bbdd.pojo.Factura;
 import reto3.controlador.Cart.Carrito;
 
 public class Login extends JFrame {
@@ -65,7 +68,17 @@ public class Login extends JFrame {
 					GestorFacturaEntrada gestor = new GestorFacturaEntrada();
 					String dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
 					gestor.insertFactura(cart, dateTime);
-					GenerarFactura generarFactura = new GenerarFactura(cart);
+					Connection con = new Connection();
+					Factura factura = null;
+					try {
+						con.connect();
+						factura = gestor.getFacturaIdBydDateTime(dateTime);
+						con.disconnect();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+						con.disconnect();
+					}
+					GenerarFactura generarFactura = new GenerarFactura(factura, cart);
 					dispose();
 					panel.setVisible(false);
 					generarFactura.setVisible(true);

@@ -104,6 +104,18 @@ public class Registrarse extends JFrame {
 		textFieldDni.setBounds(286, 11, 239, 35);
 		contentPane.add(textFieldDni);
 		textFieldDni.setColumns(10);
+		
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login(cart);
+				dispose();
+				contentPane.setVisible(false);
+				login.setVisible(true);
+			}
+		});
+		btnAtras.setBounds(630, 260, 113, 23);
+		contentPane.add(btnAtras);
 	}
 
 	private boolean validar() {

@@ -9,11 +9,10 @@ import java.time.format.DateTimeFormatter;
 
 import reto3.bbdd.pojo.Entrada;
 import reto3.bbdd.pojo.Factura;
-import reto3.controlador.Cart.Carrito;
 
 public class GestorFicheros {
 
-	public File writeFile(Carrito cart) {
+	public File writeFile(Factura factura) {
 		File file = null;
 		FileWriter fileWriter = null;
 		BufferedWriter bwriter = null;
@@ -23,16 +22,16 @@ public class GestorFicheros {
 					.replace("-", "").replace(":", ""));
 			fileWriter = new FileWriter(file, true);
 			bwriter = new BufferedWriter(fileWriter);
-			DatosCliente(cart.getCompras().get(0).getFactura(), bwriter);
-			for (int i = 0; i < cart.size(); i++) {
-				if (null != (cart.getCompras().get(i))) {
-					Entrada entrada = cart.getCompras().get(i);
+			DatosCliente(factura, bwriter);
+			for (int i = 0; i < factura.getEntradas().size(); i++) {
+				if (null != (factura.getEntradas().get(i))) {
+					Entrada entrada = factura.getEntradas().get(i);
 					DatosEntrada(entrada, bwriter);
 
 				}
 
 			}
-			DatosFactura(cart.getCompras().get(0).getFactura(), bwriter);
+			DatosFactura(factura, bwriter);
 
 		} catch (IOException e) {
 			e.printStackTrace();
