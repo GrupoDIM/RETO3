@@ -62,11 +62,9 @@ public class ElegirHora extends JFrame {
 		lblGenero.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGenero.setForeground(new Color(255, 255, 255));
 		lblGenero.setText(sesiones.get(0).getPelicula().getGenero());
-		lblGenero.setFont(new Font("Tahoma", Font.BOLD, 16));
-
-		lblGenero.setText(sesiones.get(0).getPelicula().getGenero());
-
-		lblGenero.setBounds(601, 242, 438, 32);
+		lblGenero.setFont(new Font("Arial Black", Font.BOLD, 20));
+		lblGenero.setText("GENERO : " + sesiones.get(0).getPelicula().getGenero());
+		lblGenero.setBounds(598, 175, 438, 32);
 		panel.add(lblGenero);
 
 		JLabel lblDuracion = new JLabel("duracion");

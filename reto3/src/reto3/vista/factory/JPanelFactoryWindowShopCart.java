@@ -23,6 +23,8 @@ import reto3.controlador.Cart.Carrito;
 import reto3.vista.ShoppingCart;
 
 public class JPanelFactoryWindowShopCart extends JFrame {
+	public JPanelFactoryWindowShopCart() {
+	}
 
 	private static final long serialVersionUID = 4099213746768850950L;
 
@@ -58,19 +60,19 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, 0, 488, 111);
+		ret.setBackground(new Color(248, 212, 64));
+		ret.setBounds(0, 0, 600, 111);
 		ret.setLayout(null);
 
 		JLabel lblImage = new JLabel("New label");
 		lblImage.setIcon(new javax.swing.ImageIcon(new Gestor().readimg(compra.getProyeccion().getPelicula().getImage())
-				.getScaledInstance(73, 81, WIDTH)));
-		lblImage.setBounds(10, 11, 73, 81);
+				.getScaledInstance(80, 111, WIDTH)));
+		lblImage.setBounds(0, 0, 80, 111);
 		ret.add(lblImage);
 
 		JButton btnEliminarCompra = new JButton("");
-		btnEliminarCompra.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/x_39x23.png")));
-		btnEliminarCompra.setBounds(394, 25, 56, 23);
+		btnEliminarCompra.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/BotonCross60x111.png")));
+		btnEliminarCompra.setBounds(540, 0, 60, 111);
 		ret.add(btnEliminarCompra);
 		btnEliminarCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -91,27 +93,25 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 		});
 
 		JLabel lblTitle = new JLabel("");
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
-
+		lblTitle.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblTitle.setText(compra.getProyeccion().getPelicula().getTitulo());
-
 		lblTitle.setBounds(88, 11, 274, 14);
 		ret.add(lblTitle);
 
 		JLabel lbl = new JLabel("Cantidad: ");
+		lbl.setFont(new Font("Arial Black", Font.BOLD, 11));
 		lbl.setBounds(88, 49, 56, 14);
 		ret.add(lbl);
 
 		JLabel lblCantidad = new JLabel("");
-		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCantidad.setFont(new Font("Arial Black", Font.BOLD, 11));
 		lblCantidad.setText(compra.getCantidad() + "");
 		lblCantidad.setBounds(156, 45, 46, 23);
 		ret.add(lblCantidad);
+		
 		JLabel lblPrecio = new JLabel("Precio:");
-		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 11));
-
+		lblPrecio.setFont(new Font("Arial Black", Font.BOLD, 12));
 		lblPrecio.setText("Precio Unidad : " + compra.getProyeccion().getPrecio() + "" + "€");
-
 		lblPrecio.setBounds(88, 78, 274, 14);
 		ret.add(lblPrecio);
 		return ret;
@@ -122,19 +122,19 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 488, 111);
+		ret.setBackground(new Color(248, 212, 64));
+		ret.setBounds(0, dimension, 600, 111);
 		ret.setLayout(null);
 
 		JLabel lblImage = new JLabel("New label");
 		lblImage.setIcon(new javax.swing.ImageIcon(new Gestor().readimg(compra.getProyeccion().getPelicula().getImage())
-				.getScaledInstance(73, 81, WIDTH)));
-		lblImage.setBounds(10, 11, 73, 81);
+				.getScaledInstance(80, 111, WIDTH)));
+		lblImage.setBounds(0, 0, 80, 111);
 		ret.add(lblImage);
 
 		JButton btnEliminarCompra = new JButton("");
-		btnEliminarCompra.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/x_39x23.png")));
-		btnEliminarCompra.setBounds(394, 25, 56, 23);
+		btnEliminarCompra.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/BotonCross60x111.png")));
+		btnEliminarCompra.setBounds(540, 0, 60, 111);
 		ret.add(btnEliminarCompra);
 		btnEliminarCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -153,51 +153,48 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 		});
 
 		JLabel lblTitle = new JLabel("");
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
-    
+		lblTitle.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblTitle.setText(compra.getProyeccion().getPelicula().getTitulo());
-
 		lblTitle.setBounds(88, 11, 274, 14);
 		ret.add(lblTitle);
 
 		JLabel lbl = new JLabel("Cantidad: ");
 		lbl.setBounds(88, 49, 56, 14);
+		lbl.setFont(new Font("Arial Black", Font.BOLD, 11));
 		ret.add(lbl);
 
 		JLabel lblCantidad = new JLabel("");
-		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCantidad.setFont(new Font("Arial Black", Font.BOLD, 11));
 		lblCantidad.setText(compra.getCantidad() + "");
 		lblCantidad.setBounds(156, 45, 46, 23);
 		ret.add(lblCantidad);
+		
 		JLabel lblPrecio = new JLabel("Precio:");
-		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 11));
-    
+		lblPrecio.setFont(new Font("Arial Black", Font.BOLD, 12));
 		lblPrecio.setText("Precio Unidad : " + compra.getProyeccion().getPrecio() + "" + "€");
-
 		lblPrecio.setBounds(88, 78, 274, 14);
 		ret.add(lblPrecio);
 		return ret;
 
 	}
 
-
 	private JPanel panelShopCartIII(int dimension, Entrada compra, Carrito cart, Gestor con, ShoppingCart frame,
 
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 488, 111);
+		ret.setBackground(new Color(248, 212, 64));
+		ret.setBounds(0, dimension, 600, 111);
 		ret.setLayout(null);
 
 		JLabel lblImage = new JLabel("New label");
 		lblImage.setIcon(new javax.swing.ImageIcon(new Gestor().readimg(compra.getProyeccion().getPelicula().getImage())
-				.getScaledInstance(73, 81, WIDTH)));
-		lblImage.setBounds(10, 11, 73, 81);
+				.getScaledInstance(80, 111, WIDTH)));
+		lblImage.setBounds(0, 0, 80, 111);
 		ret.add(lblImage);
 
 		JButton btnEliminarCompra = new JButton("");
-		btnEliminarCompra.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/x_39x23.png")));
-		btnEliminarCompra.setBounds(394, 25, 56, 23);
+		btnEliminarCompra.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/BotonCross60x111.png")));
+		btnEliminarCompra.setBounds(540, 0, 60, 111);
 		ret.add(btnEliminarCompra);
 		btnEliminarCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -218,27 +215,25 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 		});
 
 		JLabel lblTitle = new JLabel("");
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
-
+		lblTitle.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblTitle.setText(compra.getProyeccion().getPelicula().getTitulo());
-
 		lblTitle.setBounds(88, 11, 274, 14);
 		ret.add(lblTitle);
 
 		JLabel lbl = new JLabel("Cantidad: ");
 		lbl.setBounds(88, 49, 56, 14);
+		lbl.setFont(new Font("Arial Black", Font.BOLD, 11));
 		ret.add(lbl);
 
 		JLabel lblCantidad = new JLabel("");
-		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCantidad.setFont(new Font("Arial Black", Font.BOLD, 11));
 		lblCantidad.setText(compra.getCantidad() + "");
 		lblCantidad.setBounds(156, 45, 46, 23);
 		ret.add(lblCantidad);
+		
 		JLabel lblPrecio = new JLabel("Precio:");
-		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 11));
-
+		lblPrecio.setFont(new Font("Arial Black", Font.BOLD, 12));
 		lblPrecio.setText("Precio Unidad : " + compra.getProyeccion().getPrecio() + "" + "€");
-
 		lblPrecio.setBounds(88, 78, 274, 14);
 		ret.add(lblPrecio);
 		return ret;
@@ -249,19 +244,19 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 
 			ArrayList<Proyeccion> sesiones, int index) {
 		JPanel ret = new JPanel();
-		ret.setBackground(new Color(255, 255, 255));
-		ret.setBounds(0, dimension, 488, 111);
+		ret.setBackground(new Color(248, 212, 64));
+		ret.setBounds(0, dimension, 600, 111);
 		ret.setLayout(null);
 
 		JLabel lblImage = new JLabel("New label");
 		lblImage.setIcon(new javax.swing.ImageIcon(new Gestor().readimg(compra.getProyeccion().getPelicula().getImage())
-				.getScaledInstance(73, 81, WIDTH)));
-		lblImage.setBounds(10, 11, 73, 81);
+				.getScaledInstance(80, 111, WIDTH)));
+		lblImage.setBounds(0, 0, 80, 111);
 		ret.add(lblImage);
 
 		JButton btnEliminarCompra = new JButton("");
-		btnEliminarCompra.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/x_39x23.png")));
-		btnEliminarCompra.setBounds(394, 25, 56, 23);
+		btnEliminarCompra.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/BotonCross60x111.png")));
+		btnEliminarCompra.setBounds(540, 0, 60, 111);
 		ret.add(btnEliminarCompra);
 		btnEliminarCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -282,26 +277,25 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 		});
 
 		JLabel lblTitle = new JLabel("");
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
-
+		lblTitle.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblTitle.setText(compra.getProyeccion().getPelicula().getTitulo());
-
 		lblTitle.setBounds(88, 11, 274, 14);
 		ret.add(lblTitle);
 
 		JLabel lbl = new JLabel("Cantidad: ");
 		lbl.setBounds(88, 49, 56, 14);
+		lbl.setFont(new Font("Arial Black", Font.BOLD, 11));
 		ret.add(lbl);
 
 		JLabel lblCantidad = new JLabel("");
-		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCantidad.setFont(new Font("Arial Black", Font.BOLD, 11));
 		lblCantidad.setText(compra.getCantidad() + "");
 		lblCantidad.setBounds(156, 45, 46, 23);
 		ret.add(lblCantidad);
+		
 		JLabel lblPrecio = new JLabel("Precio:");
-		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPrecio.setFont(new Font("Arial Black", Font.BOLD, 12));
 		lblPrecio.setText("Precio Unidad : " + compra.getProyeccion().getPrecio() + "" + "€");
-
 		lblPrecio.setBounds(88, 78, 274, 14);
 		ret.add(lblPrecio);
 

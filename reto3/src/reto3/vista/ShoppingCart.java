@@ -18,6 +18,7 @@ import reto3.bbdd.pojo.Factura;
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Gestor;
 import reto3.controlador.Cart.Carrito;
+import javax.swing.ImageIcon;
 
 public class ShoppingCart extends JFrame {
 
@@ -31,60 +32,86 @@ public class ShoppingCart extends JFrame {
 
 	public ShoppingCart(ArrayList<Proyeccion> sesiones, Carrito cart, String message, int index) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 504, 644);
+		setBounds(100, 100, 1223, 700);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(33, 18, 97));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setResizable(false); // Desativado la redimenzionalidad
+		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 488, 605);
+		panel.setBackground(new Color(33, 18, 97));
+		panel.setBounds(303, 80, 600, 500);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
 		JLabel lblMessage = new JLabel("");
+		lblMessage.setForeground(new Color(255, 255, 255));
 		if (message != null) {
 			lblMessage.setText(message);
 		}
 		lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMessage.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblMessage.setBounds(99, 172, 308, 52);
+		lblMessage.setFont(new Font("Arial Black", Font.BOLD, 30));
+		lblMessage.setBounds(0, 200, 600, 100);
 		panel.add(lblMessage);
 
-		btnAtras = new JButton("Atras");
+		
+
+		JLabel lbldescount = new JLabel("");
+		lbldescount.setFont(new Font("Arial Black", Font.BOLD, 14));
+		lbldescount.setHorizontalAlignment(SwingConstants.CENTER);
+
+		lbldescount.setBounds(0, 449, 600, 24);
+		panel.add(lbldescount);
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/Footer.png")));
+		lblNewLabel.setBounds(0, 611, 1207, 50);
+		contentPane.add(lblNewLabel);
+
+		JPanel jPanelBarraSuperior = new JPanel();
+		jPanelBarraSuperior.setLayout(null);
+		jPanelBarraSuperior.setBackground(new Color(248, 212, 64));
+		jPanelBarraSuperior.setBounds(0, 0, 1207, 50);
+		contentPane.add(jPanelBarraSuperior);
+
+
+		btnAtras = new JButton("");
+		btnAtras.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/BotonAtras90x50.png")));
+		btnAtras.setBounds(29, 0, 90, 50);
+		btnAtras.setBackground(Color.WHITE);
+		jPanelBarraSuperior.add(btnAtras);
+		
+				btnComprar = new JButton("COMPRAR");
+				btnComprar.setBounds(1046, 0, 130, 50);
+				jPanelBarraSuperior.add(btnComprar);
+				btnComprar.setBackground(new Color(0, 0, 0));
+				btnComprar.setForeground(new Color(255, 255, 255));
+				btnComprar.setFont(new Font("Arial Black", Font.BOLD, 14));
+				btnComprar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (cart.size() == 0) {
+							JOptionPane.showMessageDialog(null, "Para Comprar debe seleccionar alguna Pelicula!!");
+						} else {
+							cambiarPanel(e, sesiones, cart, index);
+						}
+					}
+				});
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cambiarPanel(e, sesiones, cart, index);
 			}
 		});
-		btnAtras.setBounds(27, 556, 119, 38);
-		panel.add(btnAtras);
-
-		btnComprar = new JButton("Comprar");
-		btnComprar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (cart.size() == 0) {
-					JOptionPane.showMessageDialog(null, "Para Comprar debe seleccionar alguna Pelicula!!");
-				} else {
-					cambiarPanel(e, sesiones, cart, index);
-				}
-			}
-		});
-		btnComprar.setBounds(359, 556, 119, 38);
-		panel.add(btnComprar);
-
+		
 		JLabel lblPrecioTot = new JLabel("");
-		lblPrecioTot.setForeground(Color.BLUE);
-		lblPrecioTot.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPrecioTot.setBounds(203, 508, 275, 24);
+		lblPrecioTot.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPrecioTot.setForeground(new Color(255, 255, 255));
+		lblPrecioTot.setFont(new Font("Arial Black", Font.BOLD, 18));
+		lblPrecioTot.setBounds(0, 468, 600, 32);
 		panel.add(lblPrecioTot);
-
-		JLabel lbldescount = new JLabel("");
-
-		lbldescount.setBounds(203, 473, 275, 24);
-		panel.add(lbldescount);
 		if (!cart.isEmpty()) {
 			gestor.addJpanelToPanelShoppingCart(panel, this, cart, sesiones, index);
 			String precioTotal = gestor.calculateTotalPrice(cart);
@@ -128,5 +155,4 @@ public class ShoppingCart extends JFrame {
 			login.setVisible(true);
 		}
 	}
-
 }
