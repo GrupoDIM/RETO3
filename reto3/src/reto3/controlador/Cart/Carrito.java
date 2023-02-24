@@ -46,7 +46,12 @@ public class Carrito {
 	}
 
 	public int size() {
-
-		return compras.size();
+		int ret = 0;
+		if ((null == compras) || (compras.isEmpty())) {
+			ret = 0;
+		} else {
+			ret = compras.size();
+		}
+		return ret;
 	}
 }

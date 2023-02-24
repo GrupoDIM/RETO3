@@ -16,16 +16,20 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import reto3.bbdd.gestores.GestorCine;
+import reto3.bbdd.pojo.Cine;
 import reto3.bbdd.pojo.Entrada;
 import reto3.bbdd.pojo.Proyeccion;
 import reto3.controlador.Cart.Carrito;
 import reto3.vista.ElegirHora;
 import reto3.vista.PantallaFechaYSesion;
 import reto3.vista.Peliculas;
+import reto3.vista.SeleccionCines;
 import reto3.vista.ShoppingCart;
 import reto3.vista.factory.JButtonFactoryWindowElegirHora;
 import reto3.vista.factory.JButtonFactoryWindowFechaYSesion;
 import reto3.vista.factory.JPanelFactoryWindowShopCart;
+import reto3.vista.factory.JbuttonsFactoryWindowSeleccionCine;
 
 public class Gestor {
 	public double calculatPriceBase(Carrito cart) {
@@ -183,4 +187,17 @@ public class Gestor {
 		return ret;
 	}
 
+	public void addJbuttonsToTheJpanelSeleccionCines(SeleccionCines frame, JPanel panelCines, Carrito cart) {
+		int count = 0;
+		ArrayList<Cine> cines = new GestorCine().getCines();
+		if (!(cines == null || cines.isEmpty() || cines.size() == 0)) {
+			for (Cine cine : cines) {
+				if (null != cine) {
+					count++;
+					JbuttonsFactoryWindowSeleccionCine gestor = new JbuttonsFactoryWindowSeleccionCine();
+					panelCines.add(gestor.getJbutton(count, cine, frame, panelCines, cart));
+				}
+			}
+		}
+	}
 }
