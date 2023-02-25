@@ -100,7 +100,7 @@ public class SeleccionCines extends JFrame {
 		// JPANEL | PANEL DE "CINES"
 		JPanel jPanelCines = new JPanel();
 		jPanelCines.setBackground(new Color(33, 18, 97));
-		jPanelCines.setBounds(10, 52, 1207, 598);
+		jPanelCines.setBounds(0, 51, 1207, 598);
 		jPanelSelecionCines.add(jPanelCines);
 		jPanelCines.setLayout(null);
 		new Gestor().addJbuttonsToTheJpanelSeleccionCines(this, jPanelCines, cart);

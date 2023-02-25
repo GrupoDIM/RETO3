@@ -35,11 +35,12 @@ public class Login extends JFrame {
 	private JButton btnLogin;
 	private JButton btnRegistrarse;
 	private JPanel jPanelBarraSuperior;
-	private JLabel lblNewLabel;
+	private JLabel jLabelFooter;
 	private JLabel jLabelUsuario;
 	private JLabel jLabelPass;
 	private JLabel lblyaEresSocio;
 	private JLabel lblNewLabel_1;
+	private JLabel jLabelFondoLogin;
 
 	public Login(Carrito cart) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -160,11 +161,16 @@ public class Login extends JFrame {
 		btnRegistrarse.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnRegistrarse.setBounds(981, 0, 156, 50);
 		jPanelBarraSuperior.add(btnRegistrarse);
+		
+		jLabelFondoLogin = new JLabel("");
+		jLabelFondoLogin.setIcon(new ImageIcon(Login.class.getResource("/reto3/vista/imagenes/FondoLogin.gif")));
+		jLabelFondoLogin.setBounds(0, 0, 1207, 561);
+		panel.add(jLabelFondoLogin);
 
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/reto3/vista/imagenes/Footer.png")));
-		lblNewLabel.setBounds(0, 611, 1207, 50);
-		contentPane.add(lblNewLabel);
+		jLabelFooter = new JLabel("");
+		jLabelFooter.setIcon(new ImageIcon(Login.class.getResource("/reto3/vista/imagenes/Footer.png")));
+		jLabelFooter.setBounds(0, 611, 1207, 50);
+		contentPane.add(jLabelFooter);
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Registrarse registrarse = new Registrarse(cart);

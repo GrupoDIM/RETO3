@@ -61,6 +61,11 @@ public class GenerarFactura extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(GenerarFactura.class.getResource("/reto3/vista/imagenes/Footer.png")));
 		lblNewLabel.setBounds(0, 611, 1207, 50);
 		contentPane.add(lblNewLabel);
+		
+		JLabel jLabelFondoFactura = new JLabel("");
+		jLabelFondoFactura.setIcon(new ImageIcon(GenerarFactura.class.getResource("/reto3/vista/imagenes/FondoFactura.gif")));
+		jLabelFondoFactura.setBounds(0, 50, 1207, 561);
+		contentPane.add(jLabelFondoFactura);
 	}
 
 }

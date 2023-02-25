@@ -42,70 +42,81 @@ public class ShoppingCart extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		// JPANEL | CENTRAL | LISTADO DE PELICULASA
 		panel = new JPanel();
 		panel.setBackground(new Color(33, 18, 97));
 		panel.setBounds(303, 80, 600, 500);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblMessage = new JLabel("");
-		lblMessage.setForeground(new Color(255, 255, 255));
+		// FONDO | "SHOPPING CART" VACIO
+		JLabel jLabelFondoShopping = new JLabel("");
+		jLabelFondoShopping.setBounds(-303, -31, 1207, 561);
+		jLabelFondoShopping
+				.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/FondoShopping.gif")));
+
+		// JLABEL | MENSAJE "0 COMPRAS!"
+		JLabel jLabelShoppingEmpty = new JLabel("");
+		jLabelShoppingEmpty.setForeground(new Color(255, 255, 255));
+		jLabelShoppingEmpty.setHorizontalAlignment(SwingConstants.CENTER);
+		jLabelShoppingEmpty.setFont(new Font("Arial Black", Font.BOLD, 30));
+		jLabelShoppingEmpty.setBounds(0, 0, 600, 100);
+		panel.add(jLabelShoppingEmpty);
 		if (message != null) {
-			lblMessage.setText(message);
+			jLabelShoppingEmpty.setText(message); // Activa el mensaje
+			panel.add(jLabelFondoShopping); // Activa el fondo
 		}
-		lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMessage.setFont(new Font("Arial Black", Font.BOLD, 30));
-		lblMessage.setBounds(0, 200, 600, 100);
-		panel.add(lblMessage);
 
-		
-
+		// JLABEL | DESCUENTO
 		JLabel lbldescount = new JLabel("");
 		lbldescount.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lbldescount.setHorizontalAlignment(SwingConstants.CENTER);
-
 		lbldescount.setBounds(0, 449, 600, 24);
 		panel.add(lbldescount);
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/Footer.png")));
-		lblNewLabel.setBounds(0, 611, 1207, 50);
-		contentPane.add(lblNewLabel);
+		// JLABEL | PIE DE PAGINA
+		JLabel jLabelFooter = new JLabel("");
+		jLabelFooter.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/Footer.png")));
+		jLabelFooter.setBounds(0, 611, 1207, 50);
+		contentPane.add(jLabelFooter);
 
+		// JPANEL | BARRA SUPERIOR
 		JPanel jPanelBarraSuperior = new JPanel();
 		jPanelBarraSuperior.setLayout(null);
 		jPanelBarraSuperior.setBackground(new Color(248, 212, 64));
 		jPanelBarraSuperior.setBounds(0, 0, 1207, 50);
 		contentPane.add(jPanelBarraSuperior);
 
-
+		// JBUTTON | BOTON DE ATRAS
 		btnAtras = new JButton("");
 		btnAtras.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/BotonAtras90x50.png")));
 		btnAtras.setBounds(29, 0, 90, 50);
 		btnAtras.setBackground(Color.WHITE);
 		jPanelBarraSuperior.add(btnAtras);
-		
-				btnComprar = new JButton("COMPRAR");
-				btnComprar.setBounds(1046, 0, 130, 50);
-				jPanelBarraSuperior.add(btnComprar);
-				btnComprar.setBackground(new Color(0, 0, 0));
-				btnComprar.setForeground(new Color(255, 255, 255));
-				btnComprar.setFont(new Font("Arial Black", Font.BOLD, 14));
-				btnComprar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (cart.size() == 0) {
-							JOptionPane.showMessageDialog(null, "Para Comprar debe seleccionar alguna Pelicula!!");
-						} else {
-							cambiarPanel(e, sesiones, cart, index);
-						}
-					}
-				});
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cambiarPanel(e, sesiones, cart, index);
 			}
 		});
-		
+
+		// JBUTTON | BOTON DE COMPRA
+		btnComprar = new JButton("COMPRAR");
+		btnComprar.setBounds(1046, 0, 130, 50);
+		jPanelBarraSuperior.add(btnComprar);
+		btnComprar.setBackground(new Color(0, 0, 0));
+		btnComprar.setForeground(new Color(255, 255, 255));
+		btnComprar.setFont(new Font("Arial Black", Font.BOLD, 14));
+		btnComprar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cart.size() == 0) {
+					JOptionPane.showMessageDialog(null, "Para Comprar debe seleccionar alguna Pelicula!!");
+				} else {
+					cambiarPanel(e, sesiones, cart, index);
+				}
+			}
+		});
+
+		// JLABEL | PRECIO TOTAL
 		JLabel lblPrecioTot = new JLabel("");
 		lblPrecioTot.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrecioTot.setForeground(new Color(255, 255, 255));
@@ -126,6 +137,7 @@ public class ShoppingCart extends JFrame {
 
 	}
 
+	// METODO | CAMBIAR PANEL
 	private void cambiarPanel(ActionEvent e, ArrayList<Proyeccion> sesiones, Carrito cart, int index) {
 
 		if (e.getSource() == btnAtras) {
