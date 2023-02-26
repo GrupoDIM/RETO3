@@ -14,6 +14,7 @@ class SalaTest {
 		sala = new Sala();
 	}
 
+	// CONSTRUCTOR // 
 	@Test
 	void testConsructor() {
 
@@ -23,6 +24,7 @@ class SalaTest {
 
 	}
 
+	// ID | GET AND SET //
 	@Test
 	void testGetterSetterId() {
 		sala.setId(22);
@@ -30,6 +32,7 @@ class SalaTest {
 
 	}
 
+	// NOMBRE | GET AND SET //
 	@Test
 	void testGetterSetterNombre() {
 		sala.setNombre("blue");
@@ -37,6 +40,7 @@ class SalaTest {
 
 	}
 
+	// CINE | GET AND SET //
 	@Test
 	void testGetterSetterCine() {
 		Cine cine = new Cine();
@@ -53,6 +57,14 @@ class SalaTest {
 
 	}
 
+	// PROYECCION | GET AND SET //
+	@Test
+	void testProyeccion() {
+		sala.setProyecciones(null);
+		assertNull(sala.getProyecciones());
+	}
+	
+	// TO STRING //
 	@Test
 	void testToString() {
 		Cine cine = new Cine();
