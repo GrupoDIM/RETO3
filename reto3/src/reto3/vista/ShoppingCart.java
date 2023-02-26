@@ -36,26 +36,23 @@ public class ShoppingCart extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(33, 18, 97));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setResizable(false); // Desativado la redimenzionalidad
-		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
+		setResizable(false);
+		setLocationRelativeTo(null);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// JPANEL | CENTRAL | LISTADO DE PELICULASA
 		panel = new JPanel();
 		panel.setBackground(new Color(33, 18, 97));
 		panel.setBounds(303, 80, 600, 500);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		// FONDO | "SHOPPING CART" VACIO
 		JLabel jLabelFondoShopping = new JLabel("");
 		jLabelFondoShopping.setBounds(-303, -31, 1207, 561);
 		jLabelFondoShopping
 				.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/FondoShopping.gif")));
 
-		// JLABEL | MENSAJE "0 COMPRAS!"
 		JLabel jLabelShoppingEmpty = new JLabel("");
 		jLabelShoppingEmpty.setForeground(new Color(255, 255, 255));
 		jLabelShoppingEmpty.setHorizontalAlignment(SwingConstants.CENTER);
@@ -63,31 +60,29 @@ public class ShoppingCart extends JFrame {
 		jLabelShoppingEmpty.setBounds(0, 0, 600, 100);
 		panel.add(jLabelShoppingEmpty);
 		if (message != null) {
-			jLabelShoppingEmpty.setText(message); // Activa el mensaje
-			panel.add(jLabelFondoShopping); // Activa el fondo
+			jLabelShoppingEmpty.setText(message);
+			jLabelFondoShopping
+					.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/FondoShopping.gif")));
+			panel.add(jLabelFondoShopping);
 		}
 
-		// JLABEL | DESCUENTO
 		JLabel lbldescount = new JLabel("");
 		lbldescount.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lbldescount.setHorizontalAlignment(SwingConstants.CENTER);
 		lbldescount.setBounds(0, 449, 600, 24);
 		panel.add(lbldescount);
 
-		// JLABEL | PIE DE PAGINA
 		JLabel jLabelFooter = new JLabel("");
 		jLabelFooter.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/Footer.png")));
 		jLabelFooter.setBounds(0, 611, 1207, 50);
 		contentPane.add(jLabelFooter);
 
-		// JPANEL | BARRA SUPERIOR
 		JPanel jPanelBarraSuperior = new JPanel();
 		jPanelBarraSuperior.setLayout(null);
 		jPanelBarraSuperior.setBackground(new Color(248, 212, 64));
 		jPanelBarraSuperior.setBounds(0, 0, 1207, 50);
 		contentPane.add(jPanelBarraSuperior);
 
-		// JBUTTON | BOTON DE ATRAS
 		btnAtras = new JButton("");
 		btnAtras.setIcon(new ImageIcon(ShoppingCart.class.getResource("/reto3/vista/imagenes/BotonAtras90x50.png")));
 		btnAtras.setBounds(29, 0, 90, 50);
@@ -99,7 +94,6 @@ public class ShoppingCart extends JFrame {
 			}
 		});
 
-		// JBUTTON | BOTON DE COMPRA
 		btnComprar = new JButton("COMPRAR");
 		btnComprar.setBounds(1046, 0, 130, 50);
 		jPanelBarraSuperior.add(btnComprar);
@@ -116,7 +110,6 @@ public class ShoppingCart extends JFrame {
 			}
 		});
 
-		// JLABEL | PRECIO TOTAL
 		JLabel lblPrecioTot = new JLabel("");
 		lblPrecioTot.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrecioTot.setForeground(new Color(255, 255, 255));
@@ -137,7 +130,6 @@ public class ShoppingCart extends JFrame {
 
 	}
 
-	// METODO | CAMBIAR PANEL
 	private void cambiarPanel(ActionEvent e, ArrayList<Proyeccion> sesiones, Carrito cart, int index) {
 
 		if (e.getSource() == btnAtras) {

@@ -32,8 +32,8 @@ public class PantallaFechaYSesion extends JFrame {
 		contentPaneFechaSesion = new JPanel();
 		contentPaneFechaSesion.setBackground(new Color(33,18,97));
 		contentPaneFechaSesion.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setResizable(false); // Desativado la redimenzionalidad
-		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
+		setResizable(false); 
+		setLocationRelativeTo(null); 
 
 		setContentPane(contentPaneFechaSesion);
 		contentPaneFechaSesion.setLayout(null);

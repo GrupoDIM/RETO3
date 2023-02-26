@@ -66,8 +66,9 @@ public class GestorFicheros {
 
 		String line = "---------------------------------------------------------------------------------";
 		String pCliente = factura.getCliente().getNombre() + "\n" + factura.getCliente().getApellido1() + ""
-				+ factura.getCliente().getApellido2() + "\n" + factura.getCliente().getEmail() + "\n"
-				+ factura.getCliente().getTele();
+				+ isApellido2Null(factura.getCliente().getApellido2())
+
+				+ "\n" + factura.getCliente().getEmail() + "\n" + factura.getCliente().getTele();
 		String line2 = "----------------------------------------------------------------------------------";
 		String cabezera = "Pelicula                              | Cantidad   |  PrecioUnidad | Total   ";
 
@@ -78,6 +79,14 @@ public class GestorFicheros {
 		bwriter.write(line2 + "\n");
 		bwriter.write(cabezera + "\n");
 
+	}
+
+	private String isApellido2Null(String apellido) {
+		String ret = "";
+		if (apellido != null) {
+			ret = apellido;
+		}
+		return ret;
 	}
 
 	public void DatosEntrada(Entrada entrada, BufferedWriter bwriter) throws IOException {

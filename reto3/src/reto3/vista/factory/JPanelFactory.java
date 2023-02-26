@@ -80,13 +80,11 @@ public class JPanelFactory extends JFrame {
 
 	private JPanel jpanelI(Peliculas frame, Gestor con, Proyeccion sesion, Carrito cart) {
 
-		// JPANEL | PELICULA Nº1
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(0, 0, 0));
 		ret.setBounds(150, 20, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº1
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -102,7 +100,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº1
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -121,7 +118,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | IMAGEN "PORTADA DE PELICULA Nº2"
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -137,7 +133,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº2
 		JLabel lblTitulo = new JLabel("New label");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -154,7 +149,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | BOTON DE IMAGEN
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -171,7 +165,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº3
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -190,7 +183,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON |BOTON DE IMAGEN DE PELICULA Nº4
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -207,7 +199,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº4
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -224,7 +215,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº5
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -241,7 +231,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº5
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -258,7 +247,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº6
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -275,7 +263,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº6
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -294,7 +281,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº7
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -311,7 +297,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº7
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -328,7 +313,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº8
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -344,7 +328,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PALICULA Nº8
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -363,7 +346,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº9
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -380,7 +362,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº9
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -399,7 +380,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº10
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -416,7 +396,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº10
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -424,7 +403,7 @@ public class JPanelFactory extends JFrame {
 		lblTitulo.setBounds(300, 121, 425, 23);
 		lblTitulo.setForeground(Color.WHITE);
 		ret.add(lblTitulo);
-		
+
 		//
 		return ret;
 	}
@@ -435,7 +414,6 @@ public class JPanelFactory extends JFrame {
 		ret.setBounds(150, dimension, 800, 250);
 		ret.setLayout(null);
 
-		// JBUTTON | BOTON DE IMAGEN DE PELICULA Nº11
 		JButton btnImage = new JButton("");
 		btnImage.setIcon(new javax.swing.ImageIcon(
 				con.readimg(sesion.getPelicula().getImage()).getScaledInstance(150, 200, WIDTH)));
@@ -452,7 +430,6 @@ public class JPanelFactory extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº11
 		JLabel lblTitulo = new JLabel("New label");
 		lblTitulo.setText(sesion.getPelicula().getTitulo());
 		lblTitulo.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -460,8 +437,7 @@ public class JPanelFactory extends JFrame {
 		lblTitulo.setBounds(300, 121, 425, 23);
 		lblTitulo.setForeground(Color.WHITE);
 		ret.add(lblTitulo);
-		
-		//
+
 		return ret;
 	}
 

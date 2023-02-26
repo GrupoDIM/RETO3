@@ -45,8 +45,8 @@ public class AddMovieToTheCart extends JFrame {
 		contentPaneAddMovie = new JPanel();
 		contentPaneAddMovie.setBackground(new Color(33, 18, 97));
 		contentPaneAddMovie.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setResizable(false); // Desativado la redimenzionalidad
-		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
+		setResizable(false); 
+		setLocationRelativeTo(null); 
 
 		setContentPane(contentPaneAddMovie);
 		contentPaneAddMovie.setLayout(null);

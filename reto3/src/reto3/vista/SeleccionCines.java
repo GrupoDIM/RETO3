@@ -33,26 +33,26 @@ public class SeleccionCines extends JFrame {
 	private JButton btnCarritoDeCompra;
 
 	public SeleccionCines(Carrito cart) {
-		// JPANEL PRINCIPAL | PROPIEDADE GENERALES
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1223, 700);
 		jPanelSelecionCines = new JPanel();
 		jPanelSelecionCines.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setResizable(false); // Desativado la redimenzionalidad
-		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
+		setResizable(false); 
+		setLocationRelativeTo(null); 
 		getContentPane().setLayout(null);
 
 		setContentPane(jPanelSelecionCines);
 		jPanelSelecionCines.setLayout(null);
 
-		// JPANEL | BARRA SUPERIOR "AMARILLO"
+		
 		JPanel jPanelBarraSuperior = new JPanel();
 		jPanelBarraSuperior.setBackground(new Color(248, 212, 64));
 		jPanelBarraSuperior.setBounds(0, 0, 1207, 50);
 		jPanelSelecionCines.add(jPanelBarraSuperior);
 		jPanelBarraSuperior.setLayout(null);
 
-		// JBUTTON | BOTON DE "INICIO"
+	
 		JButton btnInicio = new JButton("");
 		btnInicio
 				.setIcon(new ImageIcon(SeleccionCines.class.getResource("/reto3/vista/imagenes/BotonInicio90x50.png")));
@@ -71,7 +71,7 @@ public class SeleccionCines extends JFrame {
 			}
 		});
 
-		// JBUTTON | BOTON DE
+	
 		btnCarritoDeCompra = new JButton("");
 		btnCarritoDeCompra.setForeground(new Color(255, 255, 255));
 		btnCarritoDeCompra.setBackground(new Color(255, 255, 255));
@@ -97,14 +97,14 @@ public class SeleccionCines extends JFrame {
 			}
 		});
 
-		// JPANEL | PANEL DE "CINES"
+	
 		JPanel jPanelCines = new JPanel();
 		jPanelCines.setBackground(new Color(33, 18, 97));
 		jPanelCines.setBounds(0, 51, 1207, 598);
 		jPanelSelecionCines.add(jPanelCines);
 		jPanelCines.setLayout(null);
 		new Gestor().addJbuttonsToTheJpanelSeleccionCines(this, jPanelCines, cart);
-		// JLABEL | "SELECIONE UN CINE"
+	
 		JLabel jLabelSelecioneUnCine = new JLabel("SELECCIONE UN CINE:");
 		jLabelSelecioneUnCine.setForeground(new Color(255, 255, 255));
 		jLabelSelecioneUnCine.setFont(new Font("Arial Black", Font.BOLD, 30));

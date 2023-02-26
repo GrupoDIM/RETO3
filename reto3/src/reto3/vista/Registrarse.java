@@ -63,8 +63,8 @@ public class Registrarse extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(33, 18, 97));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setResizable(false); // Desativado la redimenzionalidad
-		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
+		setResizable(false); 
+		setLocationRelativeTo(null); 
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -236,7 +236,7 @@ public class Registrarse extends JFrame {
 		lblWarningPass = new JLabel("");
 		lblWarningPass.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
 		lblWarningPass.setForeground(new Color(255, 0, 0));
-		lblWarningPass.setBounds(694, 391, 456, 23);
+		lblWarningPass.setBounds(620, 391, 587, 23);
 		contentPane.add(lblWarningPass);
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

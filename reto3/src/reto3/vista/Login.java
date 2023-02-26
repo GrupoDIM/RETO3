@@ -47,9 +47,7 @@ public class Login extends JFrame {
 		setBounds(100, 100, 1223, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setResizable(false); // Desativado la redimenzionalidad
-		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
-
+		setResizable(false);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 

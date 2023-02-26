@@ -14,6 +14,7 @@ import reto3.controlador.Cart.Carrito;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
 public class GenerarFactura extends JFrame {
@@ -21,14 +22,14 @@ public class GenerarFactura extends JFrame {
 	private static final long serialVersionUID = -3459780300651637500L;
 	private JPanel contentPane;
 
-	public GenerarFactura(Factura factura , Carrito cart) {
+	public GenerarFactura(Factura factura, Carrito cart) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1223, 700);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(33, 18, 97));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setResizable(false); // Desativado la redimenzionalidad
-		setLocationRelativeTo(null); // Posicionamiento central de la pantalla
+		setResizable(false);
+		setLocationRelativeTo(null);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -43,6 +44,7 @@ public class GenerarFactura extends JFrame {
 				gestor.writeFile(factura);
 				cart.getCompras().clear();
 				Bienvenida bienvenida = new Bienvenida();
+				JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
 				dispose();
 				contentPane.setVisible(false);
 				bienvenida.frame.setVisible(true);
@@ -50,20 +52,21 @@ public class GenerarFactura extends JFrame {
 		});
 		btnNewButton.setBounds(453, 300, 300, 60);
 		contentPane.add(btnNewButton);
-		
+
 		JPanel jPanelBarraSuperior = new JPanel();
 		jPanelBarraSuperior.setLayout(null);
 		jPanelBarraSuperior.setBackground(new Color(248, 212, 64));
 		jPanelBarraSuperior.setBounds(0, 0, 1207, 50);
 		contentPane.add(jPanelBarraSuperior);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(GenerarFactura.class.getResource("/reto3/vista/imagenes/Footer.png")));
 		lblNewLabel.setBounds(0, 611, 1207, 50);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel jLabelFondoFactura = new JLabel("");
-		jLabelFondoFactura.setIcon(new ImageIcon(GenerarFactura.class.getResource("/reto3/vista/imagenes/FondoFactura.gif")));
+		jLabelFondoFactura
+				.setIcon(new ImageIcon(GenerarFactura.class.getResource("/reto3/vista/imagenes/FondoFactura.gif")));
 		jLabelFondoFactura.setBounds(0, 50, 1207, 561);
 		contentPane.add(jLabelFondoFactura);
 	}

@@ -54,7 +54,6 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 		return ret;
 	}
 
-	// JPANEL | PELICULA SELECIONADA Nº1
 	private JPanel panelShopCartI(Entrada compra, Carrito cart, Gestor con, ShoppingCart frame,
 
 			ArrayList<Proyeccion> sesiones, int index) {
@@ -92,27 +91,23 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 			}
 		});
 
-		// JLABEL | TITULO DE PELICULA Nº1
 		JLabel lblTitle = new JLabel("");
 		lblTitle.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblTitle.setText(compra.getProyeccion().getPelicula().getTitulo());
 		lblTitle.setBounds(88, 11, 300, 14);
 		ret.add(lblTitle);
 
-		// JLABEL | "CANTIDAD"
 		JLabel lbl = new JLabel("Cantidad: ");
 		lbl.setFont(new Font("Arial Black", Font.BOLD, 11));
 		lbl.setBounds(88, 49, 70, 14);
 		ret.add(lbl);
 
-		// JLABEL | CANTIDAD
 		JLabel lblCantidad = new JLabel("");
 		lblCantidad.setFont(new Font("Arial Black", Font.BOLD, 11));
 		lblCantidad.setText(compra.getCantidad() + "");
 		lblCantidad.setBounds(156, 45, 46, 23);
 		ret.add(lblCantidad);
 
-		// JLABEL | PRECIO
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Arial Black", Font.BOLD, 12));
 		lblPrecio.setText("Precio Unidad : " + compra.getProyeccion().getPrecio() + "" + "€");
@@ -125,21 +120,18 @@ public class JPanelFactoryWindowShopCart extends JFrame {
 	private JPanel panelShopCartII(int dimension, Entrada compra, Carrito cart, Gestor con, ShoppingCart frame,
 
 			ArrayList<Proyeccion> sesiones, int index) {
-		// JPANEL 
+
 		JPanel ret = new JPanel();
 		ret.setBackground(new Color(248, 212, 64));
 		ret.setBounds(0, dimension, 600, 111);
 		ret.setLayout(null);
 
-		// JLABEL | IMAGEN PORTADA DE PELICULA Nº2
 		JLabel lblImage = new JLabel("");
 		lblImage.setBounds(0, 0, 80, 111);
 		ret.add(lblImage);
 		lblImage.setIcon(new javax.swing.ImageIcon(new Gestor().readimg(compra.getProyeccion().getPelicula().getImage())
 				.getScaledInstance(80, 111, WIDTH)));
-		
 
-		// JBUTTON | ELIMINAR PELICULA SELECIONADA Nº2
 		JButton btnEliminarCompra = new JButton("");
 		btnEliminarCompra.setBounds(540, 0, 60, 111);
 		ret.add(btnEliminarCompra);
