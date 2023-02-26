@@ -1,4 +1,4 @@
-package reto3.bbdd.gestores.junitSprint3;
+package reto3.jUnit.junitSprint3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,7 +26,7 @@ class GestorClienteTest {
 	@Test
 	void testComprobacionLoginCorrecto() {
 // se espera un Objeto de Tipo Cliente Not  Null id = 1 dni 12345678K 
-		String email = "marta@gmail.com";
+		String email = "mariam@gmail.com";
 		String pass = "1234";
 		Cliente cliente = gestor.getClienteByEmailAndPassword(email, pass);
 		assertNotNull(cliente);

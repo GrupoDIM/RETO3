@@ -1,4 +1,4 @@
-package reto3.bbdd.gestores.junitSprint2;
+package reto3.jUnit.junitSprint2;
 
 import static org.junit.jupiter.api.Assertions.*;
 

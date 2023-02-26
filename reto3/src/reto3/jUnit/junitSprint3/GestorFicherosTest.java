@@ -1,4 +1,4 @@
-package reto3.bbdd.gestores.junitSprint3;
+package reto3.jUnit.junitSprint3;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import reto3.bbdd.gestores.Connection;
 import reto3.bbdd.gestores.GestorFacturaEntrada;
-import reto3.bbdd.gestores.GestorFicheros;
 import reto3.bbdd.pojo.Factura;
+import reto3.controlador.GestorFicheros;
 
 class GestorFicherosTest {
 	private GestorFacturaEntrada gestor = null;
@@ -29,17 +29,14 @@ class GestorFicherosTest {
 		Factura factura = null;
 		try {
 			con.connect();
-			factura = gestor.getFacturaIdBydDateTime(LocalDateTime.of(2023, 02, 22, 15, 21, 46).toString());
+			factura = gestor.getFacturaIdBydDateTime(LocalDateTime.of(2023, 02, 26, 17, 10, 35).toString());
 			con.disconnect();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			con.disconnect();
 		}
-		
-		
 		File file = gestorFichero.writeFile(factura);
-		
-		
+
 		// comprobamos si el fichero existe
 		assertTrue(file.exists());
 		// comprobamos si el fichero no esta vacio

@@ -1,4 +1,4 @@
-package reto3.bbdd.gestores.junitSprint2;
+package reto3.jUnit.junitSprint2;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,13 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import reto3.bbdd.gestores.GestorProyeccion;
 import reto3.bbdd.pojo.Proyeccion;
-
-/**
- * FECHA DE REALIZACION DE LOS TESTS "16-02-2023"
- * 
- * @author Admin
- *
- */
 
 class GestorProyeccionTest {
 	private GestorProyeccion gestor = null;

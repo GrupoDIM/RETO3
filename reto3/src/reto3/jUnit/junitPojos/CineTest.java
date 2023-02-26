@@ -1,4 +1,4 @@
-package reto3.bbdd.pojo.junitPojos;
+package reto3.jUnit.junitPojos;
 
 import static org.junit.jupiter.api.Assertions.*;
 

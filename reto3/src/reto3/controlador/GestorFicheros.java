@@ -1,4 +1,4 @@
-package reto3.bbdd.gestores;
+package reto3.controlador;
 
 import java.io.BufferedWriter;
 import java.io.File;

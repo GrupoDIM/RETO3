@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import reto3.bbdd.gestores.GestorFicheros;
 import reto3.bbdd.pojo.Factura;
+import reto3.controlador.GestorFicheros;
 import reto3.controlador.Cart.Carrito;
 import java.awt.Color;
 import java.awt.Font;

@@ -1,4 +1,4 @@
-package reto3.bbdd.gestores.junitSprint3;
+package reto3.jUnit.junitSprint3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,6 +24,7 @@ class GestorTest {
 		// entrada 1
 
 		Entrada entrada1 = new Entrada();
+
 		Proyeccion proyecc = new Proyeccion();
 		proyecc.setPrecio(9.99);
 		entrada1.setProyeccion(proyecc);
