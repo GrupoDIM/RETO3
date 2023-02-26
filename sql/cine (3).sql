@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 16-02-2023 a las 11:36:31
+-- Tiempo de generación: 26-02-2023 a las 16:37:00
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 7.4.26
 
@@ -67,7 +67,14 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `email` varchar(50) NOT NULL,
   `pass` varchar(50) NOT NULL,
   PRIMARY KEY (`cliente_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`cliente_id`, `dni`, `nombre`, `apellido1`, `apellido2`, `genero`, `tele`, `email`, `pass`) VALUES
+(1, '12345678K', 'mariam', 'amraoui', NULL, 'F', '123456789', 'mariam@gmail.com', '1234');
 
 -- --------------------------------------------------------
 
@@ -85,6 +92,13 @@ CREATE TABLE IF NOT EXISTS `entrada` (
   KEY `factura_id` (`factura_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `entrada`
+--
+
+INSERT INTO `entrada` (`proyeccio_id`, `factura_id`, `cantidad`, `precio`) VALUES
+(11, 1, 1, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -100,7 +114,14 @@ CREATE TABLE IF NOT EXISTS `factura` (
   `precio` double DEFAULT NULL,
   PRIMARY KEY (`factura_id`),
   KEY `cliente_id` (`cliente_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`factura_id`, `cliente_id`, `fecha_hora`, `DESCUENTO`, `precio`) VALUES
+(1, 1, '2023-02-26 17:10:35', 0, 8);
 
 -- --------------------------------------------------------
 
